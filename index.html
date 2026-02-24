@@ -1,10 +1,10 @@
 <!DOCTYPE html>
+
 <html lang="hu">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Internal Oversight Bureau</title>
-
 <style>
 :root{
   --doj-blue:#0b2e4f;
@@ -392,12 +392,7 @@ mark.current{outline:2px solid var(--doj-accent);}
 .status-active{color:#1a7f37;font-weight:700;}
 
 /* Roster (állománytábla) */
-.roster-table{
-  width:100%;
-  border-collapse:separate;
-  border-spacing:0;
-  font-family:Arial, sans-serif;
-}
+.roster-table{width:100%;border-collapse:separate;border-spacing:0;font-family:Arial, sans-serif;}
 .roster-table thead th{
   text-align:left;
   border-bottom:1px solid var(--doj-border);
@@ -408,671 +403,528 @@ mark.current{outline:2px solid var(--doj-accent);}
 }
 .roster-table tbody td{
   border-bottom:1px solid var(--doj-border);
-  padding:16px 12px;
+  padding:12px 12px;
   vertical-align:middle;
 }
-.roster-table tbody tr{
-  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
-}
-.roster-table tbody tr:hover{
-  background:rgba(11,46,79,0.045);
-  transform: translateY(-3px);
-  box-shadow: 0 14px 34px rgba(0,0,0,.14);
-}
-.roster-photo-cell{
-  width:190px;
-  padding-left:14px !important;
-  padding-right:14px !important;
-}
+.roster-table tbody tr:hover{background:rgba(11,46,79,0.035);}
 .roster-avatar{
-  width:160px;
-  height:160px;
-  object-fit:cover;
-  border-radius:20px;
-  border:4px solid var(--doj-accent);
-  box-shadow:
-    0 0 0 4px #ffffff,
-    0 14px 28px rgba(0,0,0,.28);
+  width:92px;height:92px;object-fit:cover;border-radius:16px;
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
 }
-.roster-name{font-weight:800; letter-spacing:.2px;}
+.roster-name{font-weight:700;}
 .roster-role{white-space:nowrap;}
 
-/* IOB + státusz kiemelés */
-.dept-iob{color:var(--doj-accent);font-weight:800;}
-.status-active{
-  display:inline-block;
-  padding:6px 12px;
-  border-radius:999px;
-  background:#1f7a1f;
-  color:#ffffff;
-  font-weight:800;
-  letter-spacing:.3px;
-}
-
-/* Responsive: table -> stacked ID cards */
-@media (max-width: 760px){
-  .roster-table thead{display:none;}
-  .roster-table, .roster-table tbody, .roster-table tr, .roster-table td{display:block; width:100%;}
-  .roster-table tbody tr{
-    background:rgba(11,46,79,0.03);
-    border:1px solid rgba(0,0,0,.08);
-    border-radius:18px;
-    padding:16px;
-    margin:14px 0;
-    box-shadow: 0 10px 26px rgba(0,0,0,.12);
-    transform:none !important;
-  }
-  .roster-table tbody td{border:0 !important; padding:8px 0;}
-  .roster-photo-cell{width:100%; padding:0 !important; margin-bottom:10px;}
-  .roster-avatar{width:220px; height:220px; border-radius:22px;}
-  .roster-role{white-space:normal;}
-}
 
 
-/* ===== Person Modal (Profile Popup) ===== */
-.person-link{
+/* ===== Roster expandable profiles (accordion) ===== */
+.roster-name-btn{
   background: none;
-  border: 0;
+  border: none;
   padding: 0;
   color: inherit;
   font: inherit;
-  cursor: pointer;
-  text-decoration: underline;
-  text-decoration-color: rgba(11,61,145,.35);
-  text-underline-offset: 3px;
-}
-.person-link:hover{ text-decoration-color: rgba(11,61,145,.85); }
-
-.modal-overlay{
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.65);
-  z-index: 5000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 22px;
-}
-
-.modal-overlay.show{ display: flex; }
-
-.modal{
-  width: min(860px, 96vw);
-  max-height: 88vh;
-  overflow: auto;
-  background: #0c131c;
-  color: #e9eef6;
-  border-radius: 18px;
-  border: 2px solid rgba(0, 255, 204, .35);
-  box-shadow: 0 18px 50px rgba(0,0,0,.55);
-}
-
-.modal-header{
-  position: sticky;
-  top: 0;
-  background: linear-gradient(180deg, rgba(0,255,204,.22), rgba(12,19,28,0));
-  padding: 18px 18px 12px 18px;
-  border-bottom: 1px solid rgba(255,255,255,.08);
-  display: flex;
-  gap: 14px;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.modal-title{
-  display:flex;
-  gap:14px;
-  align-items:center;
-  min-width: 0;
-}
-
-.modal-avatar{
-  width: 84px;
-  height: 84px;
-  border-radius: 16px;
-  object-fit: cover;
-  border: 3px solid rgba(0,255,204,.55);
-  box-shadow: 0 10px 24px rgba(0,0,0,.35);
-}
-
-.modal-title h2{
-  margin: 0;
-  font-size: 22px;
-  line-height: 1.2;
-  letter-spacing: .2px;
-}
-.modal-sub{
-  margin-top: 6px;
-  font-size: 13px;
-  opacity: .85;
-  display:flex;
-  flex-wrap: wrap;
-  gap: 10px 14px;
-}
-
-.pill{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.10);
-  font-weight: 600;
-}
-
-.pill .dot{
-  width: 8px; height: 8px; border-radius: 50%;
-  background: #34d399;
-  box-shadow: 0 0 0 3px rgba(52,211,153,.18);
-}
-
-.modal-close{
-  background: rgba(255,255,255,.08);
-  color: #fff;
-  border: 1px solid rgba(255,255,255,.14);
-  border-radius: 12px;
-  padding: 10px 12px;
+  text-align: left;
   cursor: pointer;
   font-weight: 700;
+  text-decoration: none;
+  }
+.roster-name-btn:hover{
+  color: var(--doj-accent);
 }
-.modal-close:hover{ background: rgba(255,255,255,.12); }
-
-.modal-body{
-  padding: 16px 18px 20px 18px;
+.roster-detail td{
+  padding: 0;
+  border-top: none;
 }
-
-.modal-grid{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
-
-@media (max-width: 720px){
-  .modal-grid{ grid-template-columns: 1fr; }
-  .modal-avatar{ width: 72px; height: 72px; }
-}
-
-.modal-card{
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.09);
+.profile-card{
+  margin: 10px 0 18px;
+  border: 1px solid rgba(0,0,0,.10);
+  border-left: 6px solid var(--doj-accent);
   border-radius: 14px;
-  padding: 12px 12px;
+  background: #ffffff;
+  padding: 18px 18px 16px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.10);
 }
-
-.modal-card h3{
-  margin: 0 0 10px 0;
+.profile-top{
+  display:flex;
+  gap:16px;
+  align-items:center;
+  margin-bottom: 14px;
+}
+.profile-avatar{
+  width: 190px;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 18px;
+  border: 4px solid var(--doj-accent);
+  box-shadow: 0 0 0 4px #ffffff, 0 14px 28px rgba(0,0,0,.22);
+}
+.profile-name{
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: .2px;
+  color: var(--doj-blue);
+}
+.profile-role{
   font-size: 14px;
+  color: rgba(0,0,0,.75);
+  margin-top: 2px;
+}
+.profile-chips{
+  display:flex;
+  gap:10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.chip{
+  display:inline-flex;
+  align-items:center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .5px;
+  border: 1px solid rgba(0,0,0,.10);
+}
+.chip-dept{
+  color: var(--doj-accent);
+  background: rgba(0,94,162,.08);
+}
+.chip-status{
+  color: #ffffff;
+  background: #1a7f37;
+  border-color: rgba(0,0,0,.12);
+}
+.profile-grid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px 14px;
+  margin-top: 10px;
+}
+.profile-field{
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(16,42,67,.04);
+  border: 1px solid rgba(0,0,0,.06);
+}
+.profile-label{
+  font-size: 11px;
   letter-spacing: .6px;
   text-transform: uppercase;
-  color: rgba(0,255,204,.92);
+  color: rgba(0,0,0,.55);
+  font-weight: 800;
 }
-
-.kv{
-  display:grid;
-  grid-template-columns: 160px 1fr;
-  gap: 10px 12px;
-  font-size: 14px;
-  line-height: 1.45;
-}
-
-@media (max-width: 720px){
-  .kv{ grid-template-columns: 1fr; }
-  .kv .k{ opacity: .8; font-weight: 700; }
-}
-
-.k{ opacity: .78; }
-.v{ font-weight: 600; }
-
-.modal-note{
-  margin-top: 12px;
+.profile-value{
+  margin-top: 4px;
   font-size: 13px;
-  opacity: .82;
+  font-weight: 700;
+  color: rgba(0,0,0,.85);
+}
+.profile-bio{
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0,0,0,.08);
+  color: rgba(0,0,0,.78);
+  font-size: 14px;
+}
+
+@media (max-width: 900px){
+  .profile-avatar{ width: 140px; height: 140px; }
+  .profile-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px){
+  .profile-top{ align-items:flex-start; }
+  .profile-avatar{ width: 180px; height: 180px; }
+  .profile-grid{ grid-template-columns: 1fr; }
+}
+
+/* Roster responsiveness */
+@media (max-width: 860px){
+  .roster-avatar{width:110px;height:110px;}
+  .profile-avatar{width:220px;height:220px;}
 }
 </style>
 </head>
 <body>
-
 <div class="govbar">
-  <div class="govbar-left">
-    <span>Official Government Website</span>
-  </div>
-  <span class="govbar-flag" aria-hidden="true"></span>
+<div class="govbar-left">
+<span>Official Government Website</span>
 </div>
-
+<span aria-hidden="true" class="govbar-flag"></span>
+</div>
 <div class="header">
-  <div class="header-inner">
-    <img src="iob-logo.png" alt="IOB Logo">
-    <div class="header-text">
-      <strong>Internal Oversight Bureau</strong>
-      <span>Department of Justice Division</span>
-    </div>
-  </div>
+<div class="header-inner">
+<img alt="IOB Logo" src="iob-logo.png"/>
+<div class="header-text">
+<strong>Internal Oversight Bureau</strong>
+<span>Department of Justice Division</span>
 </div>
-
-<div class="topnav" role="navigation" aria-label="Fő navigáció">
-  <div class="topnav-inner">
-    <button class="navbtn active" data-target="home" type="button">Főoldal</button>
-    <button class="navbtn" data-target="ismerteto" type="button">Ismertető</button>
-    <button class="navbtn" data-target="allomanytabla" type="button">Alosztály állománytábla</button>
-  </div>
 </div>
-
-<section id="page-home" class="page active" aria-label="Főoldal">
-  <div class="main">
-
-    
-    <div class="sidebar">
-      <h3>Tartalom</h3>
-      <a href="#info-miert">1. Mi az IOB?</a>
-      <a href="#info-mukodes">2. Hogyan működik?</a>
-      <a href="#info-jogok">3. Jogok és kötelezettségek</a>
-      <a href="#info-gyik">4. GYIK</a>
-      <a href="#info-kapcsolat">5. Kapcsolat</a>
-    </div>
-
-    
-    <div class="content">
-
-      <h1>Főoldal</h1>
-      <div class="meta" aria-label="Oldal információ">
-        <span><a href="#" onclick="return false;">Internal Oversight Bureau</a> <span class="sep">›</span> <span>Főoldal</span></span>
-        <span class="sep">|</span>
-        <span>Last Updated: February 11, 2026</span>
-      </div>
-
-      <div class="home-hero">
-        <div class="home-title">Internal Oversight Bureau</div>
-        <img src="iob-logo.png" alt="IOB Logo">
-      </div>
-
-      <p class="notice">
+</div>
+<div aria-label="Fő navigáció" class="topnav" role="navigation">
+<div class="topnav-inner">
+<button class="navbtn active" data-target="home" type="button">Főoldal</button>
+<button class="navbtn" data-target="ismerteto" type="button">Ismertető</button>
+<button class="navbtn" data-target="allomanytabla" type="button">Alosztály állománytábla</button>
+</div>
+</div>
+<section aria-label="Főoldal" class="page active" id="page-home">
+<div class="main">
+<div class="sidebar">
+<h3>Tartalom</h3>
+<a href="#info-miert">1. Mi az IOB?</a>
+<a href="#info-mukodes">2. Hogyan működik?</a>
+<a href="#info-jogok">3. Jogok és kötelezettségek</a>
+<a href="#info-gyik">4. GYIK</a>
+<a href="#info-kapcsolat">5. Kapcsolat</a>
+</div>
+<div class="content">
+<h1>Főoldal</h1>
+<div aria-label="Oldal információ" class="meta">
+<span><a href="#" onclick="return false;">Internal Oversight Bureau</a> <span class="sep">›</span> <span>Főoldal</span></span>
+<span class="sep">|</span>
+<span>Last Updated: February 11, 2026</span>
+</div>
+<div class="home-hero">
+<div class="home-title">Internal Oversight Bureau</div>
+<img alt="IOB Logo" src="iob-logo.png"/>
+</div>
+<p class="notice">
         Az Internal Oversight Bureau (IOB) a Los Santos Police Department független felügyeleti alosztálya, amelynek feladata a rendőrségen belüli jogszerű, etikus és professzionális működés biztosítása.
       </p>
-
-      <h2 id="info-miert">1. Mi az IOB?</h2>
-      <p>
+<h2 id="info-miert">1. Mi az IOB?</h2>
+<p>
         Az IOB minden olyan esetben eljárhat, amikor egy szolgálatot teljesítő rendőr intézkedése, magatartása vagy döntéshozatala a vonatkozó törvények, belső szabályzatok vagy etikai normák megsértésének gyanúját veti fel.
         Az alosztály kizárólag a törvénynek, valamint az LSPD hatályos rendelkezéseinek van alárendelve.
       </p>
-
-      <h2 id="info-mukodes">2. Hogyan működik?</h2>
-      <ul>
-        <li>Az eljárások bejelentés, panasz, parancsnoki/vezetőségi utasítás vagy hivatalos észlelés alapján indulhatnak.</li>
-        <li>A vizsgálatok minden esetben zárt körben, bizalmas jelleggel zajlanak.</li>
-        <li>A vizsgálat lezárását követően hivatalos jelentés készül (megállapítások + javasolt intézkedések).</li>
-      </ul>
-
-      <h2 id="info-jogok">3. Jogok és kötelezettségek</h2>
-      <ul>
-        <li>Az érintett állomány köteles együttműködni az IOB-val.</li>
-        <li>Az IOB által kezelt bizonyítékok kizárólag az eljárásban részt vevő személyek számára hozzáférhetők.</li>
-        <li>Jogosulatlan hozzáférés vagy módosítás súlyos fegyelmi vétségnek minősül.</li>
-      </ul>
-
-      <h2 id="info-gyik">4. GYIK</h2>
-      <ul>
-        <li><strong>Mi az IOB célja?</strong> A rendőrség belső integritásának megőrzése, a jogszerű eljárásrend érvényesítése, valamint a közbizalom fenntartása.</li>
-        <li><strong>Az IOB célja a megtorlás?</strong> Nem; a felelősségre vonás jogszerű és objektív keretek között történik.</li>
-        <li><strong>Lehet fellebbezni?</strong> Igen, a vizsgálat lezárása után parancsnoki úton, írásban.</li>
-      </ul>
-
-      <h2 id="info-kapcsolat">5. Kapcsolat</h2>
-      <p>
+<h2 id="info-mukodes">2. Hogyan működik?</h2>
+<ul>
+<li>Az eljárások bejelentés, panasz, parancsnoki/vezetőségi utasítás vagy hivatalos észlelés alapján indulhatnak.</li>
+<li>A vizsgálatok minden esetben zárt körben, bizalmas jelleggel zajlanak.</li>
+<li>A vizsgálat lezárását követően hivatalos jelentés készül (megállapítások + javasolt intézkedések).</li>
+</ul>
+<h2 id="info-jogok">3. Jogok és kötelezettségek</h2>
+<ul>
+<li>Az érintett állomány köteles együttműködni az IOB-val.</li>
+<li>Az IOB által kezelt bizonyítékok kizárólag az eljárásban részt vevő személyek számára hozzáférhetők.</li>
+<li>Jogosulatlan hozzáférés vagy módosítás súlyos fegyelmi vétségnek minősül.</li>
+</ul>
+<h2 id="info-gyik">4. GYIK</h2>
+<ul>
+<li><strong>Mi az IOB célja?</strong> A rendőrség belső integritásának megőrzése, a jogszerű eljárásrend érvényesítése, valamint a közbizalom fenntartása.</li>
+<li><strong>Az IOB célja a megtorlás?</strong> Nem; a felelősségre vonás jogszerű és objektív keretek között történik.</li>
+<li><strong>Lehet fellebbezni?</strong> Igen, a vizsgálat lezárása után parancsnoki úton, írásban.</li>
+</ul>
+<h2 id="info-kapcsolat">5. Kapcsolat</h2>
+<p>
         Hivatalos ügyindításhoz és panaszkezeléshez a belső csatornákat használd. Általános kérdés esetén fordulj az alosztály vezetőségéhez vagy a kijelölt kapcsolattartóhoz.
       </p>
-
 </div>
-  </div>
+</div>
 </section>
-
-<section id="page-ismerteto" class="page" aria-label="Ismertető">
-  <div class="main">
-
-    <div class="sidebar">
-      <div class="searchbox">
-      <div class="findbar">
-        <input id="infoSearch" type="search" placeholder="Keresés az ismertetőben… (Ctrl+F)">
-        <button id="findPrev" type="button" title="Előző találat (Shift+Enter)" aria-label="Előző találat">◀</button>
-        <button id="findNext" type="button" title="Következő találat (Enter)" aria-label="Következő találat">▶</button>
-      </div>
-    </div>
-
-    <h3>Tartalom</h3>
-      <a href="#hatoskor">I. Hatáskör</a>
-      <a href="#eljarasrend">II. Eljárásrend</a>
-      <a href="#alapelvek">III. Alapelvek</a>
-      <a href="#szervezet">IV. Szervezeti felépítés</a>
-      <a href="#vizsgalat">V. Vizsgálati folyamat</a>
-      <a href="#fegyelmi">VI. Fegyelmi intézkedések</a>
-      <a href="#fellebbezes">VII. Fellebbezés</a>
-      <a href="#sablonok">VIII. Dokumentum sablonok</a>
-      <a href="#titoktartas">IX. Titoktartás</a>
-    </div>
-
-    <div class="content" id="infoContent">
-
-      <h1>Ismertető</h1>
-
-      <div class="meta" aria-label="Oldal információ">
-        <span><a href="#" onclick="return false;">Internal Oversight Bureau</a> <span class="sep">›</span> <span>Ismertető</span></span>
-        <span class="sep">|</span>
-        <span>Last Updated: February 11, 2026</span>
-      </div>
-
-      <img src="iob-logo.png" alt="IOB Emblem">
-
-      <p class="notice">
+<section aria-label="Ismertető" class="page" id="page-ismerteto">
+<div class="main">
+<div class="sidebar">
+<div class="searchbox">
+<div class="findbar">
+<input id="infoSearch" placeholder="Keresés az ismertetőben… (Ctrl+F)" type="search"/>
+<button aria-label="Előző találat" id="findPrev" title="Előző találat (Shift+Enter)" type="button">◀</button>
+<button aria-label="Következő találat" id="findNext" title="Következő találat (Enter)" type="button">▶</button>
+</div>
+</div>
+<h3>Tartalom</h3>
+<a href="#hatoskor">I. Hatáskör</a>
+<a href="#eljarasrend">II. Eljárásrend</a>
+<a href="#alapelvek">III. Alapelvek</a>
+<a href="#szervezet">IV. Szervezeti felépítés</a>
+<a href="#vizsgalat">V. Vizsgálati folyamat</a>
+<a href="#fegyelmi">VI. Fegyelmi intézkedések</a>
+<a href="#fellebbezes">VII. Fellebbezés</a>
+<a href="#sablonok">VIII. Dokumentum sablonok</a>
+<a href="#titoktartas">IX. Titoktartás</a>
+</div>
+<div class="content" id="infoContent">
+<h1>Ismertető</h1>
+<div aria-label="Oldal információ" class="meta">
+<span><a href="#" onclick="return false;">Internal Oversight Bureau</a> <span class="sep">›</span> <span>Ismertető</span></span>
+<span class="sep">|</span>
+<span>Last Updated: February 11, 2026</span>
+</div>
+<img alt="IOB Emblem" src="iob-logo.png"/>
+<p class="notice">
         Az Internal Oversight Bureau (IOB) a Los Santos Police Department független felügyeleti alosztálya, amelynek feladata a rendőrségen belüli jogszerű, etikus és professzionális működés biztosítása.
       </p>
-
 <h2 id="hatoskor">I. Hatáskör és illetékesség</h2>
-      <p>Az IOB hatáskörébe tartozik minden olyan ügy kivizsgálása, amely az alábbiakat érintheti:</p>
-      <ul>
-        <li>rendőri túlkapás vagy indokolatlan erőalkalmazás</li>
-        <li>korrupció, vesztegetés vagy hivatali visszaélés</li>
-        <li>szolgálati szabályzat megsértése</li>
-        <li>bizonyítékok eltitkolása, manipulálása vagy jogellenes kezelése</li>
-        <li>civil vagy állományi panaszok kivizsgálása</li>
-        <li>belső ellenőrzések és vizsgálatok lefolytatása</li>
-      </ul>
-      <p>
+<p>Az IOB hatáskörébe tartozik minden olyan ügy kivizsgálása, amely az alábbiakat érintheti:</p>
+<ul>
+<li>rendőri túlkapás vagy indokolatlan erőalkalmazás</li>
+<li>korrupció, vesztegetés vagy hivatali visszaélés</li>
+<li>szolgálati szabályzat megsértése</li>
+<li>bizonyítékok eltitkolása, manipulálása vagy jogellenes kezelése</li>
+<li>civil vagy állományi panaszok kivizsgálása</li>
+<li>belső ellenőrzések és vizsgálatok lefolytatása</li>
+</ul>
+<p>
         Az IOB jogosult bármely rendőri állományba tartozó személy meghallgatására, szolgálati dokumentumok, jelentések és egyéb releváns anyagok bekérésére és elemzésére.
       </p>
-
-      <h2 id="eljarasrend">II. Eljárásrend</h2>
-      <ul>
-        <li>Az eljárások bejelentés, panasz, parancsnoki/vezetőségi utasítás vagy hivatalos észlelés alapján indulhatnak.</li>
-        <li>A vizsgálatok minden esetben zárt körben, bizalmas jelleggel zajlanak.</li>
-        <li>Az érintett állomány köteles együttműködni az IOB-val.</li>
-        <li>A vizsgálat lezárását követően hivatalos jelentés készül, amely tartalmazza a megállapításokat és az alkalmazható intézkedésekre vonatkozó javaslatokat.</li>
-      </ul>
-      <p>
+<h2 id="eljarasrend">II. Eljárásrend</h2>
+<ul>
+<li>Az eljárások bejelentés, panasz, parancsnoki/vezetőségi utasítás vagy hivatalos észlelés alapján indulhatnak.</li>
+<li>A vizsgálatok minden esetben zárt körben, bizalmas jelleggel zajlanak.</li>
+<li>Az érintett állomány köteles együttműködni az IOB-val.</li>
+<li>A vizsgálat lezárását követően hivatalos jelentés készül, amely tartalmazza a megállapításokat és az alkalmazható intézkedésekre vonatkozó javaslatokat.</li>
+</ul>
+<p>
         Az IOB által kezelt bizonyítékok kizárólag az eljárásban részt vevő személyek számára hozzáférhetők. Jogosulatlan hozzáférés vagy módosítás súlyos fegyelmi vétségnek minősül.
       </p>
-
-      <h2 id="alapelvek">III. Alapelvek</h2>
-      <p>Az Internal Oversight Bureau működését az alábbi alapelvek határozzák meg:</p>
-      <ul>
-        <li><strong>Pártatlanság</strong> – rangra, beosztásra vagy szolgálati múltra tekintet nélkül</li>
-        <li><strong>Titoktartás</strong> – a vizsgálatok teljes időtartama alatt</li>
-        <li><strong>Jogszabálykövetés</strong> – minden eljárás a hatályos törvények és belső szabályzatok szerint</li>
-        <li><strong>Szakmaiság</strong> – az eljárások dokumentált, ellenőrizhető módon zajlanak</li>
-      </ul>
-
-      <h2 id="szervezet">IV. Szervezeti felépítés és rangstruktúra</h2>
-
-      <h3>1. Director of Internal Oversight</h3>
-      <p>Az Internal Oversight Bureau vezetője. Feladatköre:</p>
-      <ul>
-        <li>az IOB teljes működésének felügyelete</li>
-        <li>vizsgálatok engedélyezése és lezárása</li>
-        <li>jelentések jóváhagyása és továbbítása a parancsnokság/vezetőség felé</li>
-        <li>fegyelmi intézkedésekre vonatkozó javaslatok megtétele</li>
-      </ul>
-
-      <h3>2. Deputy Director</h3>
-      <p>A Director helyettese, operatív vezető. Feladatköre:</p>
-      <ul>
-        <li>aktív vizsgálatok koordinálása</li>
-        <li>investigatorok munkájának felügyelete</li>
-        <li>belső minőségellenőrzés</li>
-        <li>a Director távollétében teljes jogkörrel eljár</li>
-      </ul>
-
-      <h3>3. Senior Investigator</h3>
-      <p>Tapasztalt nyomozó, kiemelt ügyek kezelője. Feladatköre:</p>
-      <ul>
-        <li>komplex és súlyos ügyek kivizsgálása</li>
-        <li>kihallgatások vezetése</li>
-        <li>junior investigatorok mentorálása</li>
-        <li>részletes elemző jelentések készítése</li>
-      </ul>
-
-      <h3>4. Investigator</h3>
-      <p>Az IOB alapállománya. Feladatköre:</p>
-      <ul>
-        <li>panaszok kivizsgálása</li>
-        <li>bizonyítékgyűjtés és dokumentáció</li>
-        <li>meghallgatások lefolytatása</li>
-        <li>jelentések előkészítése</li>
-      </ul>
-
-      <h2 id="vizsgalat">V. Eljárásrend – Vizsgálati folyamat</h2>
-
-      <h3>Jogi képviselet és jogi jelenlét a meghallgatások során</h3>
-      <p>
+<h2 id="alapelvek">III. Alapelvek</h2>
+<p>Az Internal Oversight Bureau működését az alábbi alapelvek határozzák meg:</p>
+<ul>
+<li><strong>Pártatlanság</strong> – rangra, beosztásra vagy szolgálati múltra tekintet nélkül</li>
+<li><strong>Titoktartás</strong> – a vizsgálatok teljes időtartama alatt</li>
+<li><strong>Jogszabálykövetés</strong> – minden eljárás a hatályos törvények és belső szabályzatok szerint</li>
+<li><strong>Szakmaiság</strong> – az eljárások dokumentált, ellenőrizhető módon zajlanak</li>
+</ul>
+<h2 id="szervezet">IV. Szervezeti felépítés és rangstruktúra</h2>
+<h3>1. Director of Internal Oversight</h3>
+<p>Az Internal Oversight Bureau vezetője. Feladatköre:</p>
+<ul>
+<li>az IOB teljes működésének felügyelete</li>
+<li>vizsgálatok engedélyezése és lezárása</li>
+<li>jelentések jóváhagyása és továbbítása a parancsnokság/vezetőség felé</li>
+<li>fegyelmi intézkedésekre vonatkozó javaslatok megtétele</li>
+</ul>
+<h3>2. Deputy Director</h3>
+<p>A Director helyettese, operatív vezető. Feladatköre:</p>
+<ul>
+<li>aktív vizsgálatok koordinálása</li>
+<li>investigatorok munkájának felügyelete</li>
+<li>belső minőségellenőrzés</li>
+<li>a Director távollétében teljes jogkörrel eljár</li>
+</ul>
+<h3>3. Senior Investigator</h3>
+<p>Tapasztalt nyomozó, kiemelt ügyek kezelője. Feladatköre:</p>
+<ul>
+<li>komplex és súlyos ügyek kivizsgálása</li>
+<li>kihallgatások vezetése</li>
+<li>junior investigatorok mentorálása</li>
+<li>részletes elemző jelentések készítése</li>
+</ul>
+<h3>4. Investigator</h3>
+<p>Az IOB alapállománya. Feladatköre:</p>
+<ul>
+<li>panaszok kivizsgálása</li>
+<li>bizonyítékgyűjtés és dokumentáció</li>
+<li>meghallgatások lefolytatása</li>
+<li>jelentések előkészítése</li>
+</ul>
+<h2 id="vizsgalat">V. Eljárásrend – Vizsgálati folyamat</h2>
+<h3>Jogi képviselet és jogi jelenlét a meghallgatások során</h3>
+<p>
         Az Internal Oversight Bureau által lefolytatott meghallgatások során a meghallgatott rendőri állomány tagjának joga van törvényes rendőri jogi képviselethez.
       </p>
-      <p>Ennek keretében:</p>
-      <ul>
-        <li>a meghallgatott rendőr kérésére jelen lehet egy szolgálatban lévő, jogi képviseletre jogosult rendőr, aki a meghallgatás során jogi képviselőként jár el,</li>
-        <li>a jogi képviselő feladata a meghallgatott személy jogainak védelme, valamint az eljárás jogszerűségének biztosítása,</li>
-        <li>a jogi képviselő nem akadályozhatja a meghallgatás menetét, és nem befolyásolhatja a tanúvallomást,</li>
-        <li>a jogi képviselő jogosult észrevételeket tenni, valamint jogi kifogást emelni az eljárás során,</li>
-        <li>a meghallgatás megtagadása vagy akadályozása fegyelmi következményeket vonhat maga után.</li>
-      </ul>
-      <p>
+<p>Ennek keretében:</p>
+<ul>
+<li>a meghallgatott rendőr kérésére jelen lehet egy szolgálatban lévő, jogi képviseletre jogosult rendőr, aki a meghallgatás során jogi képviselőként jár el,</li>
+<li>a jogi képviselő feladata a meghallgatott személy jogainak védelme, valamint az eljárás jogszerűségének biztosítása,</li>
+<li>a jogi képviselő nem akadályozhatja a meghallgatás menetét, és nem befolyásolhatja a tanúvallomást,</li>
+<li>a jogi képviselő jogosult észrevételeket tenni, valamint jogi kifogást emelni az eljárás során,</li>
+<li>a meghallgatás megtagadása vagy akadályozása fegyelmi következményeket vonhat maga után.</li>
+</ul>
+<p>
         A jogi képviselet jelenléte nem akadálya az eljárás lefolytatásának, azonban annak hiánya nem szolgálhat az eljárás jogellenességének alapjául,
         amennyiben a meghallgatott személy a képviseletről önként lemondott.
       </p>
-
-      <h3>Összeférhetetlenség</h3>
-      <p>
+<h3>Összeférhetetlenség</h3>
+<p>
         Az Internal Oversight Bureau állományának tagja nem vehet részt olyan vizsgálatban, amelyben személyes, szolgálati vagy egyéb érintettsége merül fel.
         Az összeférhetetlenséget haladéktalanul jelenteni kell a felettesnek, aki az ügyet más investigatorhoz rendeli.
       </p>
-
-      <h3>1. Ügyindítás</h3>
-      <p>Vizsgálat indítható:</p>
-      <ul>
-        <li>civil panasz alapján</li>
-        <li>állományi bejelentés útján</li>
-        <li>parancsnoki utasításra</li>
-        <li>hivatalos észlelés alapján</li>
-      </ul>
-      <p>Minden ügy egyedi IOB-ügyszámot kap.</p>
-
-      <h3>2. Előzetes értékelés</h3>
-      <p>Az IOB megvizsgálja:</p>
-      <ul>
-        <li>a panasz megalapozottságát</li>
-        <li>a hatáskör fennállását</li>
-        <li>az azonnali intézkedés szükségességét</li>
-      </ul>
-
-      <h3>3. Vizsgálati szakasz</h3>
-      <p>A vizsgálat során:</p>
-      <ul>
-        <li>jelentés(ek) elemzése</li>
-        <li>érintett személyek meghallgatása</li>
-        <li>tanúk meghallgatása</li>
-        <li>szolgálati iratok ellenőrzése</li>
-        <li>az érintett állomány együttműködésre köteles</li>
-      </ul>
-
-      <h3>4. Zárójelentés</h3>
-      <p>A vizsgálat végén hivatalos jelentés készül, amely tartalmazza:</p>
-      <ul>
-        <li>a ténymegállapításokat</li>
-        <li>az eset jogi és szabályzati értékelését</li>
-        <li>az ajánlott intézkedést</li>
-      </ul>
-
-      <h2 id="fegyelmi">VI. Fegyelmi intézkedések – javaslati rendszer</h2>
-      <p>Az IOB az alábbi intézkedésekre tehet javaslatot:</p>
-      <ul>
-        <li>szóbeli vagy írásbeli figyelmeztetés</li>
-        <li>kötelező továbbképzés</li>
-        <li>ideiglenes felfüggesztés</li>
-        <li>lefokozás</li>
-        <li>szolgálati viszony megszüntetése</li>
-        <li>az ügy lezárása intézkedés nélkül</li>
-      </ul>
-      <p>A végső döntés a parancsnoki/vezetőségi állomány hatáskörébe tartozik.</p>
-
-      <h2 id="fellebbezes">VII. Fellebbezési jog és eljárásrend</h2>
-      <p>
+<h3>1. Ügyindítás</h3>
+<p>Vizsgálat indítható:</p>
+<ul>
+<li>civil panasz alapján</li>
+<li>állományi bejelentés útján</li>
+<li>parancsnoki utasításra</li>
+<li>hivatalos észlelés alapján</li>
+</ul>
+<p>Minden ügy egyedi IOB-ügyszámot kap.</p>
+<h3>2. Előzetes értékelés</h3>
+<p>Az IOB megvizsgálja:</p>
+<ul>
+<li>a panasz megalapozottságát</li>
+<li>a hatáskör fennállását</li>
+<li>az azonnali intézkedés szükségességét</li>
+</ul>
+<h3>3. Vizsgálati szakasz</h3>
+<p>A vizsgálat során:</p>
+<ul>
+<li>jelentés(ek) elemzése</li>
+<li>érintett személyek meghallgatása</li>
+<li>tanúk meghallgatása</li>
+<li>szolgálati iratok ellenőrzése</li>
+<li>az érintett állomány együttműködésre köteles</li>
+</ul>
+<h3>4. Zárójelentés</h3>
+<p>A vizsgálat végén hivatalos jelentés készül, amely tartalmazza:</p>
+<ul>
+<li>a ténymegállapításokat</li>
+<li>az eset jogi és szabályzati értékelését</li>
+<li>az ajánlott intézkedést</li>
+</ul>
+<h2 id="fegyelmi">VI. Fegyelmi intézkedések – javaslati rendszer</h2>
+<p>Az IOB az alábbi intézkedésekre tehet javaslatot:</p>
+<ul>
+<li>szóbeli vagy írásbeli figyelmeztetés</li>
+<li>kötelező továbbképzés</li>
+<li>ideiglenes felfüggesztés</li>
+<li>lefokozás</li>
+<li>szolgálati viszony megszüntetése</li>
+<li>az ügy lezárása intézkedés nélkül</li>
+</ul>
+<p>A végső döntés a parancsnoki/vezetőségi állomány hatáskörébe tartozik.</p>
+<h2 id="fellebbezes">VII. Fellebbezési jog és eljárásrend</h2>
+<p>
         Az IOB által lefolytatott vizsgálat lezárását követően az érintett személy jogosult a megállapításokkal, illetve az ajánlott intézkedésekkel szemben parancsnoki úton fellebbezést benyújtani.
       </p>
-      <p>A fellebbezés kizárólag írásos formában nyújtható be, és annak tartalmaznia kell:</p>
-      <ul>
-        <li>a vitatott megállapítások pontos megjelölését</li>
-        <li>a fellebbezés indokait</li>
-        <li>az esetlegesen hivatkozott új körülményeket vagy bizonyítékokat</li>
-      </ul>
-      <p>
+<p>A fellebbezés kizárólag írásos formában nyújtható be, és annak tartalmaznia kell:</p>
+<ul>
+<li>a vitatott megállapítások pontos megjelölését</li>
+<li>a fellebbezés indokait</li>
+<li>az esetlegesen hivatkozott új körülményeket vagy bizonyítékokat</li>
+</ul>
+<p>
         A fellebbezés benyújtása nem függeszti fel automatikusan az IOB által javasolt intézkedések végrehajtását,
         kivéve, ha azt az illetékes parancsnoki szint kifejezetten engedélyezi.
       </p>
-      <p>A parancsnoki állomány a fellebbezés elbírálása során jogosult:</p>
-      <ul>
-        <li>az IOB megállapításait helybenhagyni</li>
-        <li>az ajánlott intézkedéseket módosítani</li>
-        <li>az ügy további vizsgálatát elrendelni</li>
-        <li>vagy a megállapításokat hatályon kívül helyezni</li>
-      </ul>
-      <p>
+<p>A parancsnoki állomány a fellebbezés elbírálása során jogosult:</p>
+<ul>
+<li>az IOB megállapításait helybenhagyni</li>
+<li>az ajánlott intézkedéseket módosítani</li>
+<li>az ügy további vizsgálatát elrendelni</li>
+<li>vagy a megállapításokat hatályon kívül helyezni</li>
+</ul>
+<p>
         A parancsnoki döntés véglegesnek minősül, és az ügy lezárását követően az IOB nyilvántartásában rögzítésre kerül.
       </p>
-
-      <h2 id="sablonok">VIII. Hivatalos dokumentum sablonok</h2>
-
-      <h3>1. Panaszbejelentő lap — Internal Oversight Bureau – Complaint Form</h3>
-      <ul>
-        <li>Bejelentő neve:</li>
-        <li>Elérhetőség:</li>
-        <li>Érintett rendőr neve / azonosítója:</li>
-        <li>Dátum és időpont:</li>
-        <li>Helyszín:</li>
-        <li>Esemény részletes leírása:</li>
-        <li>Csatolt bizonyítékok:</li>
-      </ul>
-
-      <h3>2. Meghallgatási jegyzőkönyv — Internal Oversight Bureau – Interview Record</h3>
-      <ul>
-        <li>Ügyszám:</li>
-        <li>Meghallgatott személy neve / rendfokozata:</li>
-        <li>Meghallgatás dátuma és helye:</li>
-        <li>Jelenlévők:</li>
-        <li>Jegyzőkönyv tartalma:</li>
-        <li>Aláírás:</li>
-        <li>Dátum:</li>
-      </ul>
-
-      <h3>3. Zárójelentés sablon — Internal Oversight Bureau – Final Report</h3>
-      <ul>
-        <li>Ügyszám:</li>
-        <li>Vizsgálat tárgya:</li>
-        <li>Érintett személy(ek):</li>
-        <li>Vizsgálati időszak:</li>
-        <li>Megállapítások:</li>
-        <li>Értékelés:</li>
-        <li>Ajánlott intézkedés:</li>
-        <li>Jóváhagyta: Director / Deputy Director</li>
-        <li>Dátum:</li>
-      </ul>
-
-      <h2 id="titoktartas">IX. Titoktartási és magatartási szabályok</h2>
-      <p>Az IOB állományának tagjai kötelesek:</p>
-      <ul>
-        <li>a vizsgálatokkal kapcsolatos információkat bizalmasan kezelni</li>
-        <li>pártatlanul és elfogulatlanul eljárni</li>
-        <li>szolgálati visszaélést haladéktalanul jelenteni</li>
-        <li>elkerülni minden összeférhetetlenséget</li>
-      </ul>
-      <p>A titoktartás megszegése önálló fegyelmi eljárást von maga után.</p>
-
+<h2 id="sablonok">VIII. Hivatalos dokumentum sablonok</h2>
+<h3>1. Panaszbejelentő lap — Internal Oversight Bureau – Complaint Form</h3>
+<ul>
+<li>Bejelentő neve:</li>
+<li>Elérhetőség:</li>
+<li>Érintett rendőr neve / azonosítója:</li>
+<li>Dátum és időpont:</li>
+<li>Helyszín:</li>
+<li>Esemény részletes leírása:</li>
+<li>Csatolt bizonyítékok:</li>
+</ul>
+<h3>2. Meghallgatási jegyzőkönyv — Internal Oversight Bureau – Interview Record</h3>
+<ul>
+<li>Ügyszám:</li>
+<li>Meghallgatott személy neve / rendfokozata:</li>
+<li>Meghallgatás dátuma és helye:</li>
+<li>Jelenlévők:</li>
+<li>Jegyzőkönyv tartalma:</li>
+<li>Aláírás:</li>
+<li>Dátum:</li>
+</ul>
+<h3>3. Zárójelentés sablon — Internal Oversight Bureau – Final Report</h3>
+<ul>
+<li>Ügyszám:</li>
+<li>Vizsgálat tárgya:</li>
+<li>Érintett személy(ek):</li>
+<li>Vizsgálati időszak:</li>
+<li>Megállapítások:</li>
+<li>Értékelés:</li>
+<li>Ajánlott intézkedés:</li>
+<li>Jóváhagyta: Director / Deputy Director</li>
+<li>Dátum:</li>
+</ul>
+<h2 id="titoktartas">IX. Titoktartási és magatartási szabályok</h2>
+<p>Az IOB állományának tagjai kötelesek:</p>
+<ul>
+<li>a vizsgálatokkal kapcsolatos információkat bizalmasan kezelni</li>
+<li>pártatlanul és elfogulatlanul eljárni</li>
+<li>szolgálati visszaélést haladéktalanul jelenteni</li>
+<li>elkerülni minden összeférhetetlenséget</li>
+</ul>
+<p>A titoktartás megszegése önálló fegyelmi eljárást von maga után.</p>
 </div>
-  </div>
+</div>
 </section>
-
-<section id="page-allomanytabla" class="page" aria-label="Alosztály állománytábla">
-  <div class="main">
-
-    <div class="sidebar">
-      <h3>Gyors műveletek</h3>
-      <a href="#tabla">Állománytábla</a>
-    </div>
-
-    <div class="content">
-      <h1>Alosztály állománytábla</h1>
-
-      <h2 id="tabla">Állománytábla</h2>
-      <table class="roster-table" aria-label="Állománytábla">
-        <thead>
-          <tr>
-            <th style="width:190px;">Kép</th>
-            <th>Név</th>
-            <th>Beosztás</th>
-            <th>Osztály</th>
-            <th>Státusz</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="roster-photo-cell"><img class="roster-avatar" src="justin.png" alt="Justin D. Scully profilkép"></td>
-            <td class="roster-name"><button type="button" class="person-link" data-person="justin" aria-haspopup="dialog">Justin D. Scully</button></td>
-            <td class="roster-role">Director of Internal Oversight</td>
-            <td><span class="dept-iob">IOB</span></td>
-            <td><span class="status-active">Aktív</span></td>
-          </tr>
-          <tr>
-            <td class="roster-photo-cell"><img class="roster-avatar" src="jacob.png" alt="Jacob D. Scully profilkép"></td>
-            <td class="roster-name"><button type="button" class="person-link" data-person="jacob" aria-haspopup="dialog">Jacob D. Scully</button></td>
-            <td class="roster-role">Director of Internal Oversight</td>
-            <td><span class="dept-iob">IOB</span></td>
-            <td><span class="status-active">Aktív</span></td>
-          </tr>
-          <tr>
-            <td class="roster-photo-cell"><img class="roster-avatar" src="rae.png" alt="Bailey Rae Brady profilkép"></td>
-            <td class="roster-name"><button type="button" class="person-link" data-person="rae" aria-haspopup="dialog">Bailey Rae Brady</button></td>
-            <td class="roster-role">Deputy Director</td>
-            <td><span class="dept-iob">IOB</span></td>
-            <td><span class="status-active">Aktív</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+<section aria-label="Alosztály állománytábla" class="page" id="page-allomanytabla">
+<div class="main">
+<div class="sidebar">
+<h3>Gyors műveletek</h3>
+<a href="#tabla">Állománytábla</a>
+</div>
+<div class="content">
+<h1>Alosztály állománytábla</h1>
+<h2 id="tabla">Állománytábla</h2>
+<table aria-label="Állománytábla" class="roster-table">
+<thead>
+<tr>
+<th style="width:72px;">Kép</th>
+<th>Név</th>
+<th>Beosztás</th>
+<th>Osztály</th>
+<th>Státusz</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img alt="Justin D. Scully profilkép" class="roster-avatar" src="justin.png"/></td>
+<td class="roster-name"><button class="roster-name-btn" data-person="justin" type="button">Justin D. Scully</button></td>
+<td class="roster-role">Director of Internal Oversight</td>
+<td><span class="dept-iob">IOB</span></td>
+<td><span class="status-active">Aktív</span></td>
+</tr><tr class="roster-detail" data-person-detail="justin" hidden=""><td colspan="5"><div aria-label="Justin D. Scully profil" class="profile-card" role="region"><div class="profile-top"><img alt="Justin D. Scully portré" class="profile-avatar" src="justin.png"/><div class="profile-meta"><div class="profile-name">Justin D. Scully</div><div class="profile-role">Director of Internal Oversight</div><div class="profile-chips"><span class="chip chip-dept">IOB</span><span class="chip chip-status">Aktív</span></div></div></div><div class="profile-grid"><div class="profile-field"><div class="profile-label">Rank/Position</div><div class="profile-value">Director of Internal Oversight</div></div><div class="profile-field"><div class="profile-label">Department</div><div class="profile-value">IOB</div></div><div class="profile-field"><div class="profile-label">Status</div><div class="profile-value">Aktív</div></div><div class="profile-field"><div class="profile-label">Station</div><div class="profile-value">Mission Row PD (HQ)</div></div><div class="profile-field"><div class="profile-label">Phone Number</div><div class="profile-value">—</div></div><div class="profile-field"><div class="profile-label">Date of Birth</div><div class="profile-value">—</div></div><div class="profile-field"><div class="profile-label">Nationality</div><div class="profile-value">—</div></div><div class="profile-field"><div class="profile-label">Gender</div><div class="profile-value">—</div></div><div class="profile-field"><div class="profile-label">Hobby(k)</div><div class="profile-value">—</div></div></div><div class="profile-bio">A Bureau működésének stratégiai irányítása, vizsgálatok engedélyezése és lezárása, jelentések jóváhagyása.</div></div></td></tr><tr>
+<td><img alt="Jacob D. Scully profilkép" class="roster-avatar" src="jacob.png"/></td>
+<td class="roster-name"><button class="roster-name-btn" data-person="jacob" type="button">Jacob D. Scully</button></td>
+<td class="roster-role">Director of Internal Oversight</td>
+<td><span class="dept-iob">IOB</span></td>
+<td><span class="status-active">Aktív</span></td>
+</tr><tr class="roster-detail" data-person-detail="jacob" hidden=""><td colspan="5"><div aria-label="Jacob D. Scully profil" class="profile-card" role="region"><div class="profile-top"><img alt="Jacob D. Scully portré" class="profile-avatar" src="jacob.png"/><div class="profile-meta"><div class="profile-name">Jacob D. Scully</div><div class="profile-role">Director of Internal Oversight</div><div class="profile-chips"><span class="chip chip-dept">IOB</span><span class="chip chip-status">Aktív</span></div></div></div><div class="profile-grid"><div class="profile-field"><div class="profile-label">Rank/Position</div><div class="profile-value">Director of Internal Oversight</div></div><div class="profile-field"><div class="profile-label">Department</div><div class="profile-value">IOB</div></div><div class="profile-field"><div class="profile-label">Status</div><div class="profile-value">Aktív</div></div><div class="profile-field"><div class="profile-label">Station</div><div class="profile-value">Mission Row PD (HQ)</div></div><div class="profile-field"><div class="profile-label">Phone Number</div><div class="profile-value">—</div></div><div class="profile-field"><div class="profile-label">Date of Birth</div><div class="profile-value">—</div></div><div class="profile-field"><div class="profile-label">Nationality</div><div class="profile-value">—</div></div><div class="profile-field"><div class="profile-label">Gender</div><div class="profile-value">—</div></div><div class="profile-field"><div class="profile-label">Hobby(k)</div><div class="profile-value">—</div></div></div><div class="profile-bio">Kiemelt felügyeleti feladatok ellátása, eljárások koordinálása és belső megfelelés biztosítása.</div></div></td></tr><tr>
+<td><img alt="Bailey Rae Brady profilkép" class="roster-avatar" src="rae.png"/></td>
+<td class="roster-name"><button class="roster-name-btn" data-person="rae" type="button">Bailey Rae Brady</button></td>
+<td class="roster-role">Deputy Director</td>
+<td><span class="dept-iob">IOB</span></td>
+<td><span class="status-active">Aktív</span></td>
+</tr><tr class="roster-detail" data-person-detail="rae" hidden=""><td colspan="5"><div aria-label="Bailey Rae Brady profil" class="profile-card" role="region"><div class="profile-top"><img alt="Bailey Rae Brady portré" class="profile-avatar" src="rae.png"/><div class="profile-meta"><div class="profile-name">Bailey Rae Brady</div><div class="profile-role">Deputy Director</div><div class="profile-chips"><span class="chip chip-dept">IOB</span><span class="chip chip-status">Aktív</span></div></div></div><div class="profile-grid"><div class="profile-field"><div class="profile-label">Rank/Position</div><div class="profile-value">Deputy Director</div></div><div class="profile-field"><div class="profile-label">Department</div><div class="profile-value">IOB</div></div><div class="profile-field"><div class="profile-label">Status</div><div class="profile-value">Aktív</div></div><div class="profile-field"><div class="profile-label">Station</div><div class="profile-value">Mission Row PD (HQ)</div></div><div class="profile-field"><div class="profile-label">Phone Number</div><div class="profile-value">—</div></div><div class="profile-field"><div class="profile-label">Date of Birth</div><div class="profile-value">—</div></div><div class="profile-field"><div class="profile-label">Nationality</div><div class="profile-value">—</div></div><div class="profile-field"><div class="profile-label">Gender</div><div class="profile-value">—</div></div><div class="profile-field"><div class="profile-label">Hobby(k)</div><div class="profile-value">—</div></div></div><div class="profile-bio">Operatív irányítás, aktív ügyek koordinálása, investigatorok munkájának felügyelete.</div></div></td></tr></tbody>
+</table>
+</div>
+</div>
 </section>
-
-
-<div class="footer" role="contentinfo" aria-label="Footer">
-  <div class="footer-container">
-    <div class="footer-col">
-      <div class="footer-item">
-        <svg class="footer-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/>
-        </svg>
-        <div>
-          <div class="footer-subtitle">Internal Oversight Bureau</div>
-          <div>San Andreas Avenue, South Rockford Drive and Vespucci Boulevard</div>
-          <div>Vespucci, Los Santos</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer-col">
-      <div class="footer-item">
-        <svg class="footer-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.07 21 3 13.93 3 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.24 1.01l-2.21 2.2z"/>
-        </svg>
-        <div>
-          <div class="footer-subtitle">Contact the Bureau</div>
-          <div>Email: <a href="mailto:info@iobureau.gov">info@iobureau.gov</a></div>
-          <div>Phone: +1 (202) 555-0123</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="footer-divider">
+<div aria-label="Footer" class="footer" role="contentinfo">
+<div class="footer-container">
+<div class="footer-col">
+<div class="footer-item">
+<svg aria-hidden="true" class="footer-icon" focusable="false" viewbox="0 0 24 24">
+<path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z" fill="currentColor"></path>
+</svg>
+<div>
+<div class="footer-subtitle">Internal Oversight Bureau</div>
+<div>San Andreas Avenue, South Rockford Drive and Vespucci Boulevard</div>
+<div>Vespucci, Los Santos</div>
+</div>
+</div>
+</div>
+<div class="footer-col">
+<div class="footer-item">
+<svg aria-hidden="true" class="footer-icon" focusable="false" viewbox="0 0 24 24">
+<path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.07 21 3 13.93 3 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.24 1.01l-2.21 2.2z" fill="currentColor"></path>
+</svg>
+<div>
+<div class="footer-subtitle">Contact the Bureau</div>
+<div>Email: <a href="mailto:info@iobureau.gov">info@iobureau.gov</a></div>
+<div>Phone: +1 (202) 555-0123</div>
+</div>
+</div>
+</div>
+</div>
+<div class="footer-divider">
     © 2026 Internal Oversight Bureau | All Rights Reserved
   </div>
 </div>
-
-
 <script>
 (function(){
   function updateChromeHeights(){
@@ -1348,206 +1200,43 @@ mark.current{outline:2px solid var(--doj-accent);}
   window.addEventListener("load", updateChromeHeights);
 
 })();
-</script>
 
 
-<!-- Person Profile Modal -->
-<div id="personModalOverlay" class="modal-overlay" role="presentation" aria-hidden="true">
-  <div id="personModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="personModalTitle">
-    <div class="modal-header">
-      <div class="modal-title">
-        <img id="personModalAvatar" class="modal-avatar" src="" alt="">
-        <div style="min-width:0">
-          <h2 id="personModalTitle">Profile</h2>
-          <div class="modal-sub" id="personModalSub"></div>
-        </div>
-      </div>
-      <button type="button" class="modal-close" id="personModalClose" aria-label="Bezárás">✕</button>
-    </div>
-    <div class="modal-body">
-      <div class="modal-grid">
-        <div class="modal-card">
-          <h3>Service</h3>
-          <div class="kv" id="personModalService"></div>
-        </div>
-        <div class="modal-card">
-          <h3>Biography</h3>
-          <div class="kv" id="personModalBio"></div>
-          <div class="modal-note" id="personModalBioNote"></div>
-        </div>
-        <div class="modal-card" style="grid-column:1/-1">
-          <h3>Notes</h3>
-          <div class="kv" id="personModalNotes"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
+// ===== Roster expandable profiles (accordion) =====
 (function(){
-  const people = {
-    justin: {
-      name: "Justin D. Scully",
-      avatar: "justin.png",
-      dept: "IOB",
-      role: "Director of Internal Oversight",
-      status: "Aktív",
-      service: {
-        "Department": "Internal Oversight Bureau (IOB)",
-        "Position": "Director of Internal Oversight",
-        "Status": "Aktív"
-      },
-      bio: {
-        "Summary": "Rövid összefoglaló ide kerül (pár sorban).",
-        "Specialization": "Belső vizsgálatok, fegyelmi eljárások, integritás-ellenőrzés."
-      },
-      notes: {
-        "Authority": "Vizsgálatok engedélyezése és lezárása; jelentések jóváhagyása.",
-        "Confidentiality": "Az ügyek és bizonyítékok bizalmas kezelése kötelező."
-      }
-    },
-    jacob: {
-      name: "Jacob D. Scully",
-      avatar: "jacob.png",
-      dept: "IOB",
-      role: "Director of Internal Oversight",
-      status: "Aktív",
-      service: {
-        "Department": "Internal Oversight Bureau (IOB)",
-        "Position": "Director of Internal Oversight",
-        "Status": "Aktív"
-      },
-      bio: {
-        "Summary": "Rövid összefoglaló ide kerül (pár sorban).",
-        "Specialization": "Komplex ügyek felügyelete, riportok és megfelelőségi ellenőrzés."
-      },
-      notes: {
-        "Authority": "Kiemelt ügyek koordinálása; parancsnoki jelentések előkészítése.",
-        "Confidentiality": "Az IOB eljárások zárt körben, bizalmas jelleggel zajlanak."
-      }
-    },
-    rae: {
-      name: "Bailey Rae Brady",
-      avatar: "rae.png",
-      dept: "IOB",
-      role: "Deputy Director",
-      status: "Aktív",
-      service: {
-        "Department": "Internal Oversight Bureau (IOB)",
-        "Position": "Deputy Director",
-        "Status": "Aktív"
-      },
-      bio: {
-        "Summary": "Rövid összefoglaló ide kerül (pár sorban).",
-        "Specialization": "Operatív koordináció, investigatorok felügyelete, minőségellenőrzés."
-      },
-      notes: {
-        "Authority": "A Director távollétében teljes jogkörrel eljár.",
-        "Conduct": "Összeférhetetlenség esetén az ügyet haladéktalanul jelenteni kell."
-      }
-    }
-  };
+  const tbody = document.querySelector('.roster-table tbody');
+  if(!tbody) return;
 
-  const overlay = document.getElementById("personModalOverlay");
-  const modal = document.getElementById("personModal");
-  const closeBtn = document.getElementById("personModalClose");
-
-  const titleEl = document.getElementById("personModalTitle");
-  const avatarEl = document.getElementById("personModalAvatar");
-  const subEl = document.getElementById("personModalSub");
-  const serviceEl = document.getElementById("personModalService");
-  const bioEl = document.getElementById("personModalBio");
-  const bioNoteEl = document.getElementById("personModalBioNote");
-  const notesEl = document.getElementById("personModalNotes");
-
-  let lastFocus = null;
-
-  function kvToHtml(obj){
-    return Object.entries(obj).map(([k,v]) =>
-      `<div class="k">${escapeHtml(k)}</div><div class="v">${escapeHtml(v)}</div>`
-    ).join("");
+  function closeAll(){
+    tbody.querySelectorAll('tr.roster-detail').forEach(r => r.hidden = true);
+    tbody.querySelectorAll('.roster-name-btn[aria-expanded="true"]').forEach(b => b.setAttribute('aria-expanded','false'));
   }
 
-  function escapeHtml(str){
-    return String(str).replace(/[&<>"']/g, s => ({
-      "&":"&amp;","<":"&lt;",">":"&gt;",'"":"&quot;","'":"&#39;"
-    }[s]));
-  }
-
-  function openPerson(id){
-    const p = people[id];
-    if(!p) return;
-
-    lastFocus = document.activeElement;
-
-    titleEl.textContent = p.name;
-    avatarEl.src = p.avatar;
-    avatarEl.alt = p.name + " portré";
-
-    // sub pills
-    subEl.innerHTML = `
-      <span class="pill"><span class="dot"></span>${escapeHtml(p.status)}</span>
-      <span class="pill">${escapeHtml(p.dept)}</span>
-      <span class="pill">${escapeHtml(p.role)}</span>
-    `;
-
-    serviceEl.innerHTML = kvToHtml(p.service);
-    bioEl.innerHTML = kvToHtml(p.bio);
-    bioNoteEl.textContent = "Tipp: ezeket a mezőket később bővíthetjük teljes, részletes adatlapra (pl. születési dátum, azonosító, kapcsolatok).";
-    notesEl.innerHTML = kvToHtml(p.notes);
-
-    overlay.classList.add("show");
-    overlay.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-
-    // focus close
-    closeBtn.focus();
-  }
-
-  function closePerson(){
-    overlay.classList.remove("show");
-    overlay.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
-    if(lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
-  }
-
-  // Expose a tiny global hook so clicks always work (even if event delegation is affected)
-  window.openPersonModal = function(id){
-    openPerson(id);
-  };
-
-  // Click name -> open (direct binding + delegation for robustness)
-  document.querySelectorAll(".person-link").forEach(btn => {
-    btn.addEventListener("click", (e) => {
+  tbody.querySelectorAll('.roster-name-btn').forEach(btn=>{
+    btn.setAttribute('aria-expanded','false');
+    btn.addEventListener('click', (e)=>{
       e.preventDefault();
       e.stopPropagation();
-      openPerson(btn.getAttribute("data-person"));
+      const pid = btn.getAttribute('data-person');
+      const detail = tbody.querySelector('tr.roster-detail[data-person-detail="'+pid+'"]');
+      if(!detail) return;
+
+      const isOpen = !detail.hidden;
+      closeAll();
+      if(!isOpen){
+        detail.hidden = false;
+        btn.setAttribute('aria-expanded','true');
+        // smooth scroll to keep the expanded card in view (with sticky header)
+        const y = detail.getBoundingClientRect().top + window.scrollY - (window.__stickyHeaderHeight || 0) - 16;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
     });
   });
 
-  document.addEventListener("click", (e) => {
-    const btn = e.target.closest(".person-link");
-    if(btn){
-      const id = btn.getAttribute("data-person");
-      openPerson(id);
-    }
-  });
-    if(btn){
-      const id = btn.getAttribute("data-person");
-      openPerson(id);
-    }
-  });
-
-  // Close handlers
-  closeBtn.addEventListener("click", closePerson);
-  overlay.addEventListener("click", (e) => {
-    if(e.target === overlay) closePerson();
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if(!overlay.classList.contains("show")) return;
-    if(e.key === "Escape") closePerson();
+  // Optional: clicking elsewhere in the roster closes all expanded cards
+  document.addEventListener('click', (e)=>{
+    const withinRoster = e.target.closest('.roster-table');
+    if(!withinRoster) closeAll();
   });
 })();
 </script>
