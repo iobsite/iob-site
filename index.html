@@ -33,7 +33,13 @@ body{
   align-items:center;
   justify-content:space-between;
   gap:12px;
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:1000;
 }
+
 .govbar .govbar-left{display:flex; align-items:center; gap:10px;}
 .govbar .govbar-flag{
   width:34px;
@@ -49,7 +55,11 @@ body{
 
 /* header polish */
 .header{
-  position:relative;
+  position:fixed;
+  top:var(--govbar-h, 0px);
+  left:0;
+  right:0;
+  z-index:999;
   overflow:hidden;
 }
 .header::after{
@@ -101,7 +111,13 @@ body{
   background:#ffffff;
   border-bottom:1px solid var(--doj-border);
   font-family: Arial, sans-serif;
+  position:fixed;
+  top:calc(var(--govbar-h, 0px) + var(--header-h, 0px));
+  left:0;
+  right:0;
+  z-index:998;
 }
+
 
 .topnav-inner{
   max-width:1300px;
@@ -135,26 +151,12 @@ body{
   color:#ffffff;
 }
 
-/* SUBTLE FLAG STRIPE (inspired by justice.gov) */
-.flagstripe{
-  height:6px;
-  background:
-    linear-gradient(90deg,
-      #b22234 0%, #b22234 14%,
-      #ffffff 14%, #ffffff 28%,
-      #b22234 28%, #b22234 42%,
-      #ffffff 42%, #ffffff 56%,
-      #b22234 56%, #b22234 70%,
-      #ffffff 70%, #ffffff 84%,
-      #b22234 84%, #b22234 100%);
-  border-bottom:1px solid var(--doj-border);
-}
-
 /* MAIN LAYOUT */
 .main{
   max-width:1300px;
   margin:auto;
   display:flex;
+  margin-top:var(--chrome-h, 0px);
 }
 
 /* SIDEBAR */
@@ -164,8 +166,8 @@ body{
   padding:30px 20px;
   background:#fafafa;
   position:sticky;
-  top:0;
-  height:100vh;
+  top:var(--chrome-h, 0px);
+  height:calc(100vh - var(--chrome-h, 0px));
   overflow-y:auto;
   font-family: Arial, sans-serif;
 }
@@ -337,6 +339,10 @@ mark.current{outline:2px solid var(--doj-accent);}
     padding:35px 20px;
   }
 }
+
+
+/* Keep in-page anchors visible under fixed chrome */
+[id^="sec-"]{ scroll-margin-top: calc(var(--chrome-h, 0px) + 16px); }
 </style>
 </head>
 <body>
@@ -365,7 +371,6 @@ mark.current{outline:2px solid var(--doj-accent);}
     <button class="navbtn" data-target="allomanytabla" type="button">Alosztály állománytábla</button>
   </div>
 </div>
-<div class="flagstripe" aria-hidden="true"></div>
 
 <section id="page-home" class="page active" aria-label="Főoldal">
   <div class="main">
@@ -445,7 +450,6 @@ mark.current{outline:2px solid var(--doj-accent);}
         <button id="findPrev" type="button" title="Előző találat (Shift+Enter)" aria-label="Előző találat">◀</button>
         <button id="findNext" type="button" title="Következő találat (Enter)" aria-label="Következő találat">▶</button>
       </div>
-      <div class="helptext"><span id="findCount">0/0</span> • Ctrl+F = kereső • Enter = következő • Shift+Enter = előző • Esc = törlés</div>
     </div>
 
     <h3>Tartalom</h3>
@@ -468,7 +472,7 @@ mark.current{outline:2px solid var(--doj-accent);}
       <div class="meta" aria-label="Oldal információ">
         <span><a href="#" onclick="return false;">Internal Oversight Bureau</a> <span class="sep">›</span> <span>Ismertető</span></span>
         <span class="sep">|</span>
-        <span>Last Updated: February 24, 2026</span>
+        <span>Last Updated: February 11, 2026</span>
       </div>
 
       <img src="iob-logo.png" alt="IOB Emblem">
@@ -759,10 +763,8 @@ mark.current{outline:2px solid var(--doj-accent);}
       <div>Phone: +1 (202) 555-0123</div>
     </div>
     <div style="min-width:260px;flex:1;">
-      <div style="font-weight:700;letter-spacing:.5px;margin-bottom:8px;">Székhely</div>
-      <div>950 Pennsylvania Avenue NW</div>
-      <div>Washington, DC 20530</div>
-      <div>United States</div>
+      <div style="font-weight:700;letter-spacing:.5px;margin-bottom:8px;">Headquarters</div>
+      <div>San Andreas Avenue, South Rockford Drive and Vespucci Boulevard, Vespucci, Los Santos</div>
     </div>
     <div style="min-width:200px;display:flex;align-items:flex-start;gap:10px;">
       <span class="govbar-flag" aria-hidden="true" title="United States"></span>
@@ -776,6 +778,23 @@ mark.current{outline:2px solid var(--doj-accent);}
 
 <script>
 (function(){
+  function updateChromeHeights(){
+    const gov = document.querySelector(".govbar");
+    const header = document.querySelector(".header");
+    const nav = document.querySelector(".topnav");
+    if(!gov || !header || !nav) return;
+
+    const govH = gov.offsetHeight || 0;
+    const headerH = header.offsetHeight || 0;
+    const navH = nav.offsetHeight || 0;
+    const total = govH + headerH + navH;
+
+    document.documentElement.style.setProperty("--govbar-h", govH + "px");
+    document.documentElement.style.setProperty("--header-h", headerH + "px");
+    document.documentElement.style.setProperty("--topnav-h", navH + "px");
+    document.documentElement.style.setProperty("--chrome-h", total + "px");
+  }
+
   const buttons = Array.from(document.querySelectorAll(".navbtn"));
   const pages = {
     home: document.getElementById("page-home"),
@@ -797,6 +816,7 @@ mark.current{outline:2px solid var(--doj-accent);}
     }
 
     if(target === "home"){
+      bindHomeAnchors();
       initScrollAnimFor(document.querySelector("#page-home .content"));
     }
   }
@@ -812,7 +832,7 @@ mark.current{outline:2px solid var(--doj-accent);}
     if(!container || revealInitialized.has(container)) return;
 
     const targets = Array.from(container.querySelectorAll(
-      "h2, h3, p, ul, table, img, .notice, .meta, .home-hero"
+      "h1, h2, h3, p, ul, table, img, .notice, .meta, .home-hero"
     ));
 
     targets.forEach(el => {
@@ -835,6 +855,21 @@ mark.current{outline:2px solid var(--doj-accent);}
   // Smooth scroll for ismertető sidebar anchors
   function bindIsmertetoAnchors(){
     const links = Array.from(document.querySelectorAll("#page-ismerteto .sidebar a[href^='#']"));
+    links.forEach(a => {
+      a.addEventListener("click", (e) => {
+        const href = a.getAttribute("href");
+        const target = href ? document.querySelector(href) : null;
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
+  }
+
+  // Főoldal sidebar anchors (smooth scroll)
+  function bindHomeAnchors(){
+    const links = Array.from(document.querySelectorAll("#page-home .sidebar a[href^='#']"));
     links.forEach(a => {
       a.addEventListener("click", (e) => {
         const href = a.getAttribute("href");
@@ -1005,8 +1040,15 @@ mark.current{outline:2px solid var(--doj-accent);}
     }
   });
 
-  // Initial reveal on Főoldal
+  // Initial reveal + smooth anchors on Főoldal
+  bindHomeAnchors();
   initScrollAnimFor(document.querySelector("#page-home .content"));
+
+  // Sticky chrome sizing
+  updateChromeHeights();
+  window.addEventListener("resize", updateChromeHeights);
+  // Recompute after fonts/images settle
+  window.addEventListener("load", updateChromeHeights);
 
 })();
 </script>
