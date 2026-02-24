@@ -387,6 +387,34 @@ mark.current{outline:2px solid var(--doj-accent);}
   font-size:13px;
 }
 
+
+.dept-iob{color:var(--doj-blue);font-weight:700;}
+.status-active{color:#1a7f37;font-weight:700;}
+
+/* Roster (állománytábla) */
+.roster-table{width:100%;border-collapse:separate;border-spacing:0;font-family:Arial, sans-serif;}
+.roster-table thead th{
+  text-align:left;
+  border-bottom:1px solid var(--doj-border);
+  padding:12px 12px;
+  font-weight:700;
+  color:#111;
+  background:rgba(11,46,79,0.03);
+}
+.roster-table tbody td{
+  border-bottom:1px solid var(--doj-border);
+  padding:12px 12px;
+  vertical-align:middle;
+}
+.roster-table tbody tr:hover{background:rgba(11,46,79,0.035);}
+.roster-avatar{
+  width:56px;height:56px;object-fit:cover;border-radius:14px;
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+}
+.roster-name{font-weight:700;}
+.roster-role{white-space:nowrap;}
+
 </style>
 </head>
 <body>
@@ -436,7 +464,7 @@ mark.current{outline:2px solid var(--doj-accent);}
       <div class="meta" aria-label="Oldal információ">
         <span><a href="#" onclick="return false;">Internal Oversight Bureau</a> <span class="sep">›</span> <span>Főoldal</span></span>
         <span class="sep">|</span>
-        <span>Last Updated: February 24, 2026</span>
+        <span>Last Updated: February 11, 2026</span>
       </div>
 
       <div class="home-hero">
@@ -497,16 +525,15 @@ mark.current{outline:2px solid var(--doj-accent);}
     </div>
 
     <h3>Tartalom</h3>
-      <a href="#kuldetes">I. Küldetésnyilatkozat</a>
-      <a href="#hatoskor">II. Hatáskör</a>
-      <a href="#eljarasrend">III. Eljárásrend</a>
-      <a href="#alapelvek">IV. Alapelvek</a>
-      <a href="#szervezet">V. Szervezeti felépítés</a>
-      <a href="#vizsgalat">VI. Vizsgálati folyamat</a>
-      <a href="#fegyelmi">VII. Fegyelmi intézkedések</a>
-      <a href="#fellebbezes">VIII. Fellebbezés</a>
-      <a href="#sablonok">IX. Dokumentum sablonok</a>
-      <a href="#titoktartas">X. Titoktartás</a>
+      <a href="#hatoskor">I. Hatáskör</a>
+      <a href="#eljarasrend">II. Eljárásrend</a>
+      <a href="#alapelvek">III. Alapelvek</a>
+      <a href="#szervezet">IV. Szervezeti felépítés</a>
+      <a href="#vizsgalat">V. Vizsgálati folyamat</a>
+      <a href="#fegyelmi">VI. Fegyelmi intézkedések</a>
+      <a href="#fellebbezes">VII. Fellebbezés</a>
+      <a href="#sablonok">VIII. Dokumentum sablonok</a>
+      <a href="#titoktartas">IX. Titoktartás</a>
     </div>
 
     <div class="content" id="infoContent">
@@ -516,7 +543,7 @@ mark.current{outline:2px solid var(--doj-accent);}
       <div class="meta" aria-label="Oldal információ">
         <span><a href="#" onclick="return false;">Internal Oversight Bureau</a> <span class="sep">›</span> <span>Ismertető</span></span>
         <span class="sep">|</span>
-        <span>Last Updated: February 24, 2026</span>
+        <span>Last Updated: February 11, 2026</span>
       </div>
 
       <img src="iob-logo.png" alt="IOB Emblem">
@@ -525,14 +552,7 @@ mark.current{outline:2px solid var(--doj-accent);}
         Az Internal Oversight Bureau (IOB) a Los Santos Police Department független felügyeleti alosztálya, amelynek feladata a rendőrségen belüli jogszerű, etikus és professzionális működés biztosítása.
       </p>
 
-      <h2 id="kuldetes">I. Küldetésnyilatkozat</h2>
-      <p>
-        Az Internal Oversight Bureau küldetése a rendőrség belső integritásának megőrzése, a jogszerű eljárásrend érvényesítése,
-        valamint a közbizalom fenntartása a rendvédelmi szervek iránt.
-        Az IOB célja nem a megtorlás, hanem a felelősségre vonás jogszerű és objektív keretek között.
-      </p>
-
-      <h2 id="hatoskor">II. Hatáskör és illetékesség</h2>
+<h2 id="hatoskor">I. Hatáskör és illetékesség</h2>
       <p>Az IOB hatáskörébe tartozik minden olyan ügy kivizsgálása, amely az alábbiakat érintheti:</p>
       <ul>
         <li>rendőri túlkapás vagy indokolatlan erőalkalmazás</li>
@@ -546,7 +566,7 @@ mark.current{outline:2px solid var(--doj-accent);}
         Az IOB jogosult bármely rendőri állományba tartozó személy meghallgatására, szolgálati dokumentumok, jelentések és egyéb releváns anyagok bekérésére és elemzésére.
       </p>
 
-      <h2 id="eljarasrend">III. Eljárásrend</h2>
+      <h2 id="eljarasrend">II. Eljárásrend</h2>
       <ul>
         <li>Az eljárások bejelentés, panasz, parancsnoki/vezetőségi utasítás vagy hivatalos észlelés alapján indulhatnak.</li>
         <li>A vizsgálatok minden esetben zárt körben, bizalmas jelleggel zajlanak.</li>
@@ -557,7 +577,7 @@ mark.current{outline:2px solid var(--doj-accent);}
         Az IOB által kezelt bizonyítékok kizárólag az eljárásban részt vevő személyek számára hozzáférhetők. Jogosulatlan hozzáférés vagy módosítás súlyos fegyelmi vétségnek minősül.
       </p>
 
-      <h2 id="alapelvek">IV. Alapelvek</h2>
+      <h2 id="alapelvek">III. Alapelvek</h2>
       <p>Az Internal Oversight Bureau működését az alábbi alapelvek határozzák meg:</p>
       <ul>
         <li><strong>Pártatlanság</strong> – rangra, beosztásra vagy szolgálati múltra tekintet nélkül</li>
@@ -566,7 +586,7 @@ mark.current{outline:2px solid var(--doj-accent);}
         <li><strong>Szakmaiság</strong> – az eljárások dokumentált, ellenőrizhető módon zajlanak</li>
       </ul>
 
-      <h2 id="szervezet">V. Szervezeti felépítés és rangstruktúra</h2>
+      <h2 id="szervezet">IV. Szervezeti felépítés és rangstruktúra</h2>
 
       <h3>1. Director of Internal Oversight</h3>
       <p>Az Internal Oversight Bureau vezetője. Feladatköre:</p>
@@ -604,7 +624,7 @@ mark.current{outline:2px solid var(--doj-accent);}
         <li>jelentések előkészítése</li>
       </ul>
 
-      <h2 id="vizsgalat">VI. Eljárásrend – Vizsgálati folyamat</h2>
+      <h2 id="vizsgalat">V. Eljárásrend – Vizsgálati folyamat</h2>
 
       <h3>Jogi képviselet és jogi jelenlét a meghallgatások során</h3>
       <p>
@@ -665,7 +685,7 @@ mark.current{outline:2px solid var(--doj-accent);}
         <li>az ajánlott intézkedést</li>
       </ul>
 
-      <h2 id="fegyelmi">VII. Fegyelmi intézkedések – javaslati rendszer</h2>
+      <h2 id="fegyelmi">VI. Fegyelmi intézkedések – javaslati rendszer</h2>
       <p>Az IOB az alábbi intézkedésekre tehet javaslatot:</p>
       <ul>
         <li>szóbeli vagy írásbeli figyelmeztetés</li>
@@ -677,7 +697,7 @@ mark.current{outline:2px solid var(--doj-accent);}
       </ul>
       <p>A végső döntés a parancsnoki/vezetőségi állomány hatáskörébe tartozik.</p>
 
-      <h2 id="fellebbezes">VIII. Fellebbezési jog és eljárásrend</h2>
+      <h2 id="fellebbezes">VII. Fellebbezési jog és eljárásrend</h2>
       <p>
         Az IOB által lefolytatott vizsgálat lezárását követően az érintett személy jogosult a megállapításokkal, illetve az ajánlott intézkedésekkel szemben parancsnoki úton fellebbezést benyújtani.
       </p>
@@ -702,7 +722,7 @@ mark.current{outline:2px solid var(--doj-accent);}
         A parancsnoki döntés véglegesnek minősül, és az ügy lezárását követően az IOB nyilvántartásában rögzítésre kerül.
       </p>
 
-      <h2 id="sablonok">IX. Hivatalos dokumentum sablonok</h2>
+      <h2 id="sablonok">VIII. Hivatalos dokumentum sablonok</h2>
 
       <h3>1. Panaszbejelentő lap — Internal Oversight Bureau – Complaint Form</h3>
       <ul>
@@ -739,7 +759,7 @@ mark.current{outline:2px solid var(--doj-accent);}
         <li>Dátum:</li>
       </ul>
 
-      <h2 id="titoktartas">X. Titoktartási és magatartási szabályok</h2>
+      <h2 id="titoktartas">IX. Titoktartási és magatartási szabályok</h2>
       <p>Az IOB állományának tagjai kötelesek:</p>
       <ul>
         <li>a vizsgálatokkal kapcsolatos információkat bizalmasan kezelni</li>
@@ -765,33 +785,37 @@ mark.current{outline:2px solid var(--doj-accent);}
       <h1>Alosztály állománytábla</h1>
 
       <h2 id="tabla">Állománytábla</h2>
-      <table style="width:100%; border-collapse:collapse; font-family:Arial, sans-serif;">
+      <table class="roster-table" aria-label="Állománytábla">
         <thead>
           <tr>
-            <th style="text-align:left; border-bottom:1px solid var(--doj-border); padding:10px;">Név</th>
-            <th style="text-align:left; border-bottom:1px solid var(--doj-border); padding:10px;">Beosztás</th>
-            <th style="text-align:left; border-bottom:1px solid var(--doj-border); padding:10px;">Osztály</th>
-            <th style="text-align:left; border-bottom:1px solid var(--doj-border); padding:10px;">Státusz</th>
+            <th style="width:72px;">Kép</th>
+            <th>Név</th>
+            <th>Beosztás</th>
+            <th>Osztály</th>
+            <th>Státusz</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td style="border-bottom:1px solid var(--doj-border); padding:10px;">Justin D. Scully</td>
-            <td style="border-bottom:1px solid var(--doj-border); padding:10px;">Director of Internal Oversight</td>
-            <td style="border-bottom:1px solid var(--doj-border); padding:10px;">IOB</td>
-            <td style="border-bottom:1px solid var(--doj-border); padding:10px;">Aktív</td>
+            <td><img class="roster-avatar" src="justin.png" alt="Justin D. Scully profilkép"></td>
+            <td class="roster-name">Justin D. Scully</td>
+            <td class="roster-role">Director of Internal Oversight</td>
+            <td><span class="dept-iob">IOB</span></td>
+            <td><span class="status-active">Aktív</span></td>
           </tr>
           <tr>
-            <td style="border-bottom:1px solid var(--doj-border); padding:10px;">Jacob D. Scully</td>
-            <td style="border-bottom:1px solid var(--doj-border); padding:10px;">Director of Internal Oversight</td>
-            <td style="border-bottom:1px solid var(--doj-border); padding:10px;">IOB</td>
-            <td style="border-bottom:1px solid var(--doj-border); padding:10px;">Aktív</td>
+            <td><img class="roster-avatar" src="jacob.png" alt="Jacob D. Scully profilkép"></td>
+            <td class="roster-name">Jacob D. Scully</td>
+            <td class="roster-role">Director of Internal Oversight</td>
+            <td><span class="dept-iob">IOB</span></td>
+            <td><span class="status-active">Aktív</span></td>
           </tr>
           <tr>
-            <td style="border-bottom:1px solid var(--doj-border); padding:10px;">Bailey Rae Brady</td>
-            <td style="border-bottom:1px solid var(--doj-border); padding:10px;">Deputy Director</td>
-            <td style="border-bottom:1px solid var(--doj-border); padding:10px;">IOB</td>
-            <td style="border-bottom:1px solid var(--doj-border); padding:10px;">Aktív</td>
+            <td><img class="roster-avatar" src="rae.png" alt="Bailey Rae Brady profilkép"></td>
+            <td class="roster-name">Bailey Rae Brady</td>
+            <td class="roster-role">Deputy Director</td>
+            <td><span class="dept-iob">IOB</span></td>
+            <td><span class="status-active">Aktív</span></td>
           </tr>
         </tbody>
       </table>
