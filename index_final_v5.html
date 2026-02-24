@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Internal Oversight Bureau</title>
+
+<style>
+:root{
+  --doj-blue:#0b2e4f;
+  --doj-dark:#102a43;
+  --doj-light:#f2f4f7;
+  --doj-border:#d9d9d9;
+  --doj-accent:#005ea2;
+}
+
+body{
+  margin:0;
+  font-family: Georgia, "Times New Roman", serif;
+  color:#1b1b1b;
+  background:#ffffff;
+  line-height:1.7;
+}
+
+/* TOP GOV BAR */
+.govbar{
+  background:#f1f1f1;
+  font-size:13px;
+  padding:6px 20px;
+  border-bottom:1px solid var(--doj-border);
+  font-family: Arial, sans-serif;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:1000;
+}
+
+.govbar .govbar-left{display:flex; align-items:center; gap:10px;}
+.govbar .govbar-flag{
+  width:34px;
+  height:18px;
+  border:1px solid #cfcfcf;
+  border-radius:2px;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='34' height='18' viewBox='0 0 34 18'><rect width='34' height='18' fill='%23fff'/><g fill='%23b22234'><rect y='0' width='34' height='2'/><rect y='4' width='34' height='2'/><rect y='8' width='34' height='2'/><rect y='12' width='34' height='2'/><rect y='16' width='34' height='2'/></g><rect width='14' height='10' fill='%233c3b6e'/></svg>");
+  background-size:cover;
+  box-shadow:0 1px 0 rgba(0,0,0,.04);
+}
+
+/* HEADER */
+
+/* header polish */
+.header{
+  position:fixed;
+  top:var(--govbar-h, 0px);
+  left:0;
+  right:0;
+  z-index:999;
+  overflow:hidden;
+}
+.header::after{
+  content:"";
+  position:absolute;
+  right:-40px;
+  top:-60px;
+  width:240px;
+  height:240px;
+  opacity:.10;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'><circle cx='120' cy='120' r='104' fill='none' stroke='%23ffffff' stroke-width='6'/><circle cx='120' cy='120' r='84' fill='none' stroke='%23ffffff' stroke-width='3'/><path d='M120 70 l16 32 36 5-26 25 6 36-32-17-32 17 6-36-26-25 36-5z' fill='none' stroke='%23ffffff' stroke-width='3'/></svg>");
+  background-size:contain;
+  background-repeat:no-repeat;
+  pointer-events:none;
+}
+
+.header{
+  background:var(--doj-blue);
+  color:white;
+  padding:18px 40px;
+}
+
+.header-inner{
+  max-width:1300px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.header img{
+  height:70px;
+}
+
+.header-text strong{
+  font-size:22px;
+  font-family: Arial, sans-serif;
+}
+
+.header-text span{
+  display:block;
+  font-size:13px;
+  opacity:.85;
+  font-family: Arial, sans-serif;
+}
+
+/* TOP NAV (NEW) */
+.topnav{
+  background:#ffffff;
+  border-bottom:1px solid var(--doj-border);
+  font-family: Arial, sans-serif;
+  position:fixed;
+  top:calc(var(--govbar-h, 0px) + var(--header-h, 0px));
+  left:0;
+  right:0;
+  z-index:998;
+}
+
+
+.topnav-inner{
+  max-width:1300px;
+  margin:auto;
+  padding:10px 20px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.navbtn{
+  appearance:none;
+  border:1px solid var(--doj-border);
+  background:#f7f7f7;
+  color:#102a43;
+  padding:10px 14px;
+  border-radius:6px;
+  font-size:14px;
+  cursor:pointer;
+}
+
+.navbtn:hover{
+  border-color:var(--doj-accent);
+  color:var(--doj-accent);
+  background:#ffffff;
+}
+
+.navbtn.active{
+  background:var(--doj-accent);
+  border-color:var(--doj-accent);
+  color:#ffffff;
+}
+
+/* MAIN LAYOUT */
+.main{
+  max-width:1300px;
+  margin:auto;
+  display:flex;
+  margin-top:var(--chrome-h, 0px);
+}
+
+/* SIDEBAR */
+.sidebar{
+  width:300px;
+  border-right:1px solid var(--doj-border);
+  padding:30px 20px;
+  background:#fafafa;
+  position:sticky;
+  top:var(--chrome-h, 0px);
+  height:calc(100vh - var(--chrome-h, 0px));
+  overflow-y:auto;
+  font-family: Arial, sans-serif;
+}
+
+.sidebar h3{
+  font-size:14px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  margin-bottom:15px;
+}
+
+.sidebar a{
+  display:block;
+  color:#102a43;
+  text-decoration:none;
+  padding:6px 0;
+  font-size:14px;
+}
+
+.sidebar a:hover{
+  color:var(--doj-accent);
+}
+
+.sidebar .searchbox{
+  margin:0 0 18px 0;
+}
+
+.sidebar input[type="search"]{
+  width:100%;
+  padding:10px 10px;
+  border:1px solid var(--doj-border);
+  border-radius:6px;
+  font-size:14px;
+}
+
+.sidebar .helptext{
+  font-size:12px;
+  opacity:.8;
+  margin-top:6px;
+}
+
+/* CONTENT */
+.content{
+  flex:1;
+  padding:50px 60px;
+  max-width:900px;
+}
+
+.content img{
+  display:block;
+  margin:30px auto;
+  max-width:350px;
+}
+
+/* DOJ-LIKE META (minimal inspiration from justice.gov layout) */
+.meta{
+  font-family: Arial, sans-serif;
+  font-size:13px;
+  color:#4a5568;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+  margin:10px 0 18px;
+}
+.meta a{color:var(--doj-accent); text-decoration:none;}
+.meta a:hover{text-decoration:underline;}
+.meta .sep{opacity:.6;}
+
+h1{
+  font-size:38px;
+  font-weight:normal;
+  margin-top:0;
+}
+
+h2{
+  font-size:24px;
+  margin-top:50px;
+  border-bottom:1px solid var(--doj-border);
+  padding-bottom:8px;
+}
+
+h3{
+  font-size:18px;
+  margin-top:26px;
+  margin-bottom:6px;
+  font-family: Arial, sans-serif;
+  color:#102a43;
+}
+
+ul{
+  margin-left:20px;
+}
+
+.notice{
+  background:#f9f9f9;
+  border-left:4px solid var(--doj-accent);
+  padding:20px;
+  margin:25px 0;
+}
+
+mark{
+  background: #fff2a8;
+  padding: 0 2px;
+}
+
+mark.current{outline:2px solid var(--doj-accent);}
+
+/* HOME HERO */
+.home-hero{text-align:center; margin:10px 0 25px;}
+.home-hero .home-title{font-family: Arial, sans-serif; font-size:16px; letter-spacing:1.5px; text-transform:uppercase; color:var(--doj-dark); margin:0 0 10px 0;}
+.home-hero img{max-width:180px; margin:0 auto;}
+
+/* FIND (CTRL+F STYLE) */
+.findbar{display:flex; gap:6px; align-items:center;}
+.findbar input[type="search"]{flex:1;}
+.findbar button{
+  border:1px solid var(--doj-border);
+  background:#ffffff;
+  border-radius:6px;
+  padding:10px 10px;
+  cursor:pointer;
+  font-size:14px;
+  line-height:1;
+}
+.findbar button:hover{
+  border-color:var(--doj-accent);
+  color:var(--doj-accent);
+}
+/* SCROLL ANIMATION (ISMERTETŐ) */
+.scroll-anim{opacity:0; transform:translateY(12px); transition:opacity .6s ease, transform .6s ease;}
+.scroll-anim.in{opacity:1; transform:none;}
+@media (prefers-reduced-motion: reduce){
+  .scroll-anim{opacity:1; transform:none; transition:none;}
+}
+
+/* FOOTER */
+.footer{
+  background:var(--doj-dark);
+  color:white;
+  padding:30px 40px;
+  font-size:14px;
+  margin-top:60px;
+  font-family: Arial, sans-serif;
+}
+
+/* PAGE SWITCHING */
+.page{
+  display:none;
+}
+.page.active{
+  display:block;
+}
+
+/* RESPONSIVE */
+@media(max-width:1000px){
+  .main{
+    flex-direction:column;
+  }
+  .sidebar{
+    position:relative;
+    width:100%;
+    height:auto;
+    border-right:none;
+    border-bottom:1px solid var(--doj-border);
+    top:auto;
+  }
+  .content{
+    padding:35px 20px;
+  }
+}
+
+
+/* Keep in-page anchors visible under fixed chrome */
+[id^="sec-"]{ scroll-margin-top: calc(var(--chrome-h, 0px) + 16px); }
+</style>
+</head>
+<body>
+
+<div class="govbar">
+  <div class="govbar-left">
+    <span>Official Government Website</span>
+  </div>
+  <span class="govbar-flag" aria-hidden="true"></span>
+</div>
+
+<div class="header">
+  <div class="header-inner">
+    <img src="iob-logo.png" alt="IOB Logo">
+    <div class="header-text">
+      <strong>Internal Oversight Bureau</strong>
+      <span>Department of Justice Division</span>
+    </div>
+  </div>
+</div>
+
+<div class="topnav" role="navigation" aria-label="Fő navigáció">
+  <div class="topnav-inner">
+    <button class="navbtn active" data-target="home" type="button">Főoldal</button>
+    <button class="navbtn" data-target="ismerteto" type="button">Ismertető</button>
+    <button class="navbtn" data-target="allomanytabla" type="button">Alosztály állománytábla</button>
+  </div>
+</div>
+
+<section id="page-home" class="page active" aria-label="Főoldal">
+  <div class="main">
+
+    
+    <div class="sidebar">
+      <h3>Tartalom</h3>
+      <a href="#info-miert">1. Mi az IOB?</a>
+      <a href="#info-mukodes">2. Hogyan működik?</a>
+      <a href="#info-jogok">3. Jogok és kötelezettségek</a>
+      <a href="#info-gyik">4. GYIK</a>
+      <a href="#info-kapcsolat">5. Kapcsolat</a>
+    </div>
+
+    
+    <div class="content">
+
+      <h1>Főoldal</h1>
+      <div class="meta" aria-label="Oldal információ">
+        <span><a href="#" onclick="return false;">Internal Oversight Bureau</a> <span class="sep">›</span> <span>Főoldal</span></span>
+        <span class="sep">|</span>
+        <span>Last Updated: February 11, 2026</span>
+      </div>
+
+      <div class="home-hero">
+        <div class="home-title">Internal Oversight Bureau</div>
+        <img src="iob-logo.png" alt="IOB Logo">
+      </div>
+
+      <p class="notice">
+        Az Internal Oversight Bureau (IOB) a Los Santos Police Department független felügyeleti alosztálya, amelynek feladata a rendőrségen belüli jogszerű, etikus és professzionális működés biztosítása.
+      </p>
+
+      <h2 id="info-miert">1. Mi az IOB?</h2>
+      <p>
+        Az IOB minden olyan esetben eljárhat, amikor egy szolgálatot teljesítő rendőr intézkedése, magatartása vagy döntéshozatala a vonatkozó törvények, belső szabályzatok vagy etikai normák megsértésének gyanúját veti fel.
+        Az alosztály kizárólag a törvénynek, valamint az LSPD hatályos rendelkezéseinek van alárendelve.
+      </p>
+
+      <h2 id="info-mukodes">2. Hogyan működik?</h2>
+      <ul>
+        <li>Az eljárások bejelentés, panasz, parancsnoki/vezetőségi utasítás vagy hivatalos észlelés alapján indulhatnak.</li>
+        <li>A vizsgálatok minden esetben zárt körben, bizalmas jelleggel zajlanak.</li>
+        <li>A vizsgálat lezárását követően hivatalos jelentés készül (megállapítások + javasolt intézkedések).</li>
+      </ul>
+
+      <h2 id="info-jogok">3. Jogok és kötelezettségek</h2>
+      <ul>
+        <li>Az érintett állomány köteles együttműködni az IOB-val.</li>
+        <li>Az IOB által kezelt bizonyítékok kizárólag az eljárásban részt vevő személyek számára hozzáférhetők.</li>
+        <li>Jogosulatlan hozzáférés vagy módosítás súlyos fegyelmi vétségnek minősül.</li>
+      </ul>
+
+      <h2 id="info-gyik">4. GYIK</h2>
+      <ul>
+        <li><strong>Mi az IOB célja?</strong> A rendőrség belső integritásának megőrzése, a jogszerű eljárásrend érvényesítése, valamint a közbizalom fenntartása.</li>
+        <li><strong>Az IOB célja a megtorlás?</strong> Nem; a felelősségre vonás jogszerű és objektív keretek között történik.</li>
+        <li><strong>Lehet fellebbezni?</strong> Igen, a vizsgálat lezárása után parancsnoki úton, írásban.</li>
+      </ul>
+
+      <h2 id="info-kapcsolat">5. Kapcsolat</h2>
+      <p>
+        Hivatalos ügyindításhoz és panaszkezeléshez a belső csatornákat használd. Általános kérdés esetén fordulj az alosztály vezetőségéhez vagy a kijelölt kapcsolattartóhoz.
+      </p>
+
+</div>
+  </div>
+</section>
+
+<section id="page-ismerteto" class="page" aria-label="Ismertető">
+  <div class="main">
+
+    <div class="sidebar">
+      <div class="searchbox">
+      <div class="findbar">
+        <input id="infoSearch" type="search" placeholder="Keresés az ismertetőben… (Ctrl+F)">
+        <button id="findPrev" type="button" title="Előző találat (Shift+Enter)" aria-label="Előző találat">◀</button>
+        <button id="findNext" type="button" title="Következő találat (Enter)" aria-label="Következő találat">▶</button>
+      </div>
+    </div>
+
+    <h3>Tartalom</h3>
+      <a href="#kuldetes">I. Küldetésnyilatkozat</a>
+      <a href="#hatoskor">II. Hatáskör</a>
+      <a href="#eljarasrend">III. Eljárásrend</a>
+      <a href="#alapelvek">IV. Alapelvek</a>
+      <a href="#szervezet">V. Szervezeti felépítés</a>
+      <a href="#vizsgalat">VI. Vizsgálati folyamat</a>
+      <a href="#fegyelmi">VII. Fegyelmi intézkedések</a>
+      <a href="#fellebbezes">VIII. Fellebbezés</a>
+      <a href="#sablonok">IX. Dokumentum sablonok</a>
+      <a href="#titoktartas">X. Titoktartás</a>
+    </div>
+
+    <div class="content" id="infoContent">
+
+      <h1>Ismertető</h1>
+
+      <div class="meta" aria-label="Oldal információ">
+        <span><a href="#" onclick="return false;">Internal Oversight Bureau</a> <span class="sep">›</span> <span>Ismertető</span></span>
+        <span class="sep">|</span>
+        <span>Last Updated: February 11, 2026</span>
+      </div>
+
+      <img src="iob-logo.png" alt="IOB Emblem">
+
+      <p class="notice">
+        Az Internal Oversight Bureau (IOB) a Los Santos Police Department független felügyeleti alosztálya, amelynek feladata a rendőrségen belüli jogszerű, etikus és professzionális működés biztosítása.
+      </p>
+
+      <h2 id="kuldetes">I. Küldetésnyilatkozat</h2>
+      <p>
+        Az Internal Oversight Bureau küldetése a rendőrség belső integritásának megőrzése, a jogszerű eljárásrend érvényesítése,
+        valamint a közbizalom fenntartása a rendvédelmi szervek iránt.
+        Az IOB célja nem a megtorlás, hanem a felelősségre vonás jogszerű és objektív keretek között.
+      </p>
+
+      <h2 id="hatoskor">II. Hatáskör és illetékesség</h2>
+      <p>Az IOB hatáskörébe tartozik minden olyan ügy kivizsgálása, amely az alábbiakat érintheti:</p>
+      <ul>
+        <li>rendőri túlkapás vagy indokolatlan erőalkalmazás</li>
+        <li>korrupció, vesztegetés vagy hivatali visszaélés</li>
+        <li>szolgálati szabályzat megsértése</li>
+        <li>bizonyítékok eltitkolása, manipulálása vagy jogellenes kezelése</li>
+        <li>civil vagy állományi panaszok kivizsgálása</li>
+        <li>belső ellenőrzések és vizsgálatok lefolytatása</li>
+      </ul>
+      <p>
+        Az IOB jogosult bármely rendőri állományba tartozó személy meghallgatására, szolgálati dokumentumok, jelentések és egyéb releváns anyagok bekérésére és elemzésére.
+      </p>
+
+      <h2 id="eljarasrend">III. Eljárásrend</h2>
+      <ul>
+        <li>Az eljárások bejelentés, panasz, parancsnoki/vezetőségi utasítás vagy hivatalos észlelés alapján indulhatnak.</li>
+        <li>A vizsgálatok minden esetben zárt körben, bizalmas jelleggel zajlanak.</li>
+        <li>Az érintett állomány köteles együttműködni az IOB-val.</li>
+        <li>A vizsgálat lezárását követően hivatalos jelentés készül, amely tartalmazza a megállapításokat és az alkalmazható intézkedésekre vonatkozó javaslatokat.</li>
+      </ul>
+      <p>
+        Az IOB által kezelt bizonyítékok kizárólag az eljárásban részt vevő személyek számára hozzáférhetők. Jogosulatlan hozzáférés vagy módosítás súlyos fegyelmi vétségnek minősül.
+      </p>
+
+      <h2 id="alapelvek">IV. Alapelvek</h2>
+      <p>Az Internal Oversight Bureau működését az alábbi alapelvek határozzák meg:</p>
+      <ul>
+        <li><strong>Pártatlanság</strong> – rangra, beosztásra vagy szolgálati múltra tekintet nélkül</li>
+        <li><strong>Titoktartás</strong> – a vizsgálatok teljes időtartama alatt</li>
+        <li><strong>Jogszabálykövetés</strong> – minden eljárás a hatályos törvények és belső szabályzatok szerint</li>
+        <li><strong>Szakmaiság</strong> – az eljárások dokumentált, ellenőrizhető módon zajlanak</li>
+      </ul>
+
+      <h2 id="szervezet">V. Szervezeti felépítés és rangstruktúra</h2>
+
+      <h3>1. Director of Internal Oversight</h3>
+      <p>Az Internal Oversight Bureau vezetője. Feladatköre:</p>
+      <ul>
+        <li>az IOB teljes működésének felügyelete</li>
+        <li>vizsgálatok engedélyezése és lezárása</li>
+        <li>jelentések jóváhagyása és továbbítása a parancsnokság/vezetőség felé</li>
+        <li>fegyelmi intézkedésekre vonatkozó javaslatok megtétele</li>
+      </ul>
+
+      <h3>2. Deputy Director</h3>
+      <p>A Director helyettese, operatív vezető. Feladatköre:</p>
+      <ul>
+        <li>aktív vizsgálatok koordinálása</li>
+        <li>investigatorok munkájának felügyelete</li>
+        <li>belső minőségellenőrzés</li>
+        <li>a Director távollétében teljes jogkörrel eljár</li>
+      </ul>
+
+      <h3>3. Senior Investigator</h3>
+      <p>Tapasztalt nyomozó, kiemelt ügyek kezelője. Feladatköre:</p>
+      <ul>
+        <li>komplex és súlyos ügyek kivizsgálása</li>
+        <li>kihallgatások vezetése</li>
+        <li>junior investigatorok mentorálása</li>
+        <li>részletes elemző jelentések készítése</li>
+      </ul>
+
+      <h3>4. Investigator</h3>
+      <p>Az IOB alapállománya. Feladatköre:</p>
+      <ul>
+        <li>panaszok kivizsgálása</li>
+        <li>bizonyítékgyűjtés és dokumentáció</li>
+        <li>meghallgatások lefolytatása</li>
+        <li>jelentések előkészítése</li>
+      </ul>
+
+      <h2 id="vizsgalat">VI. Eljárásrend – Vizsgálati folyamat</h2>
+
+      <h3>Jogi képviselet és jogi jelenlét a meghallgatások során</h3>
+      <p>
+        Az Internal Oversight Bureau által lefolytatott meghallgatások során a meghallgatott rendőri állomány tagjának joga van törvényes rendőri jogi képviselethez.
+      </p>
+      <p>Ennek keretében:</p>
+      <ul>
+        <li>a meghallgatott rendőr kérésére jelen lehet egy szolgálatban lévő, jogi képviseletre jogosult rendőr, aki a meghallgatás során jogi képviselőként jár el,</li>
+        <li>a jogi képviselő feladata a meghallgatott személy jogainak védelme, valamint az eljárás jogszerűségének biztosítása,</li>
+        <li>a jogi képviselő nem akadályozhatja a meghallgatás menetét, és nem befolyásolhatja a tanúvallomást,</li>
+        <li>a jogi képviselő jogosult észrevételeket tenni, valamint jogi kifogást emelni az eljárás során,</li>
+        <li>a meghallgatás megtagadása vagy akadályozása fegyelmi következményeket vonhat maga után.</li>
+      </ul>
+      <p>
+        A jogi képviselet jelenléte nem akadálya az eljárás lefolytatásának, azonban annak hiánya nem szolgálhat az eljárás jogellenességének alapjául,
+        amennyiben a meghallgatott személy a képviseletről önként lemondott.
+      </p>
+
+      <h3>Összeférhetetlenség</h3>
+      <p>
+        Az Internal Oversight Bureau állományának tagja nem vehet részt olyan vizsgálatban, amelyben személyes, szolgálati vagy egyéb érintettsége merül fel.
+        Az összeférhetetlenséget haladéktalanul jelenteni kell a felettesnek, aki az ügyet más investigatorhoz rendeli.
+      </p>
+
+      <h3>1. Ügyindítás</h3>
+      <p>Vizsgálat indítható:</p>
+      <ul>
+        <li>civil panasz alapján</li>
+        <li>állományi bejelentés útján</li>
+        <li>parancsnoki utasításra</li>
+        <li>hivatalos észlelés alapján</li>
+      </ul>
+      <p>Minden ügy egyedi IOB-ügyszámot kap.</p>
+
+      <h3>2. Előzetes értékelés</h3>
+      <p>Az IOB megvizsgálja:</p>
+      <ul>
+        <li>a panasz megalapozottságát</li>
+        <li>a hatáskör fennállását</li>
+        <li>az azonnali intézkedés szükségességét</li>
+      </ul>
+
+      <h3>3. Vizsgálati szakasz</h3>
+      <p>A vizsgálat során:</p>
+      <ul>
+        <li>jelentés(ek) elemzése</li>
+        <li>érintett személyek meghallgatása</li>
+        <li>tanúk meghallgatása</li>
+        <li>szolgálati iratok ellenőrzése</li>
+        <li>az érintett állomány együttműködésre köteles</li>
+      </ul>
+
+      <h3>4. Zárójelentés</h3>
+      <p>A vizsgálat végén hivatalos jelentés készül, amely tartalmazza:</p>
+      <ul>
+        <li>a ténymegállapításokat</li>
+        <li>az eset jogi és szabályzati értékelését</li>
+        <li>az ajánlott intézkedést</li>
+      </ul>
+
+      <h2 id="fegyelmi">VII. Fegyelmi intézkedések – javaslati rendszer</h2>
+      <p>Az IOB az alábbi intézkedésekre tehet javaslatot:</p>
+      <ul>
+        <li>szóbeli vagy írásbeli figyelmeztetés</li>
+        <li>kötelező továbbképzés</li>
+        <li>ideiglenes felfüggesztés</li>
+        <li>lefokozás</li>
+        <li>szolgálati viszony megszüntetése</li>
+        <li>az ügy lezárása intézkedés nélkül</li>
+      </ul>
+      <p>A végső döntés a parancsnoki/vezetőségi állomány hatáskörébe tartozik.</p>
+
+      <h2 id="fellebbezes">VIII. Fellebbezési jog és eljárásrend</h2>
+      <p>
+        Az IOB által lefolytatott vizsgálat lezárását követően az érintett személy jogosult a megállapításokkal, illetve az ajánlott intézkedésekkel szemben parancsnoki úton fellebbezést benyújtani.
+      </p>
+      <p>A fellebbezés kizárólag írásos formában nyújtható be, és annak tartalmaznia kell:</p>
+      <ul>
+        <li>a vitatott megállapítások pontos megjelölését</li>
+        <li>a fellebbezés indokait</li>
+        <li>az esetlegesen hivatkozott új körülményeket vagy bizonyítékokat</li>
+      </ul>
+      <p>
+        A fellebbezés benyújtása nem függeszti fel automatikusan az IOB által javasolt intézkedések végrehajtását,
+        kivéve, ha azt az illetékes parancsnoki szint kifejezetten engedélyezi.
+      </p>
+      <p>A parancsnoki állomány a fellebbezés elbírálása során jogosult:</p>
+      <ul>
+        <li>az IOB megállapításait helybenhagyni</li>
+        <li>az ajánlott intézkedéseket módosítani</li>
+        <li>az ügy további vizsgálatát elrendelni</li>
+        <li>vagy a megállapításokat hatályon kívül helyezni</li>
+      </ul>
+      <p>
+        A parancsnoki döntés véglegesnek minősül, és az ügy lezárását követően az IOB nyilvántartásában rögzítésre kerül.
+      </p>
+
+      <h2 id="sablonok">IX. Hivatalos dokumentum sablonok</h2>
+
+      <h3>1. Panaszbejelentő lap — Internal Oversight Bureau – Complaint Form</h3>
+      <ul>
+        <li>Bejelentő neve:</li>
+        <li>Elérhetőség:</li>
+        <li>Érintett rendőr neve / azonosítója:</li>
+        <li>Dátum és időpont:</li>
+        <li>Helyszín:</li>
+        <li>Esemény részletes leírása:</li>
+        <li>Csatolt bizonyítékok:</li>
+      </ul>
+
+      <h3>2. Meghallgatási jegyzőkönyv — Internal Oversight Bureau – Interview Record</h3>
+      <ul>
+        <li>Ügyszám:</li>
+        <li>Meghallgatott személy neve / rendfokozata:</li>
+        <li>Meghallgatás dátuma és helye:</li>
+        <li>Jelenlévők:</li>
+        <li>Jegyzőkönyv tartalma:</li>
+        <li>Aláírás:</li>
+        <li>Dátum:</li>
+      </ul>
+
+      <h3>3. Zárójelentés sablon — Internal Oversight Bureau – Final Report</h3>
+      <ul>
+        <li>Ügyszám:</li>
+        <li>Vizsgálat tárgya:</li>
+        <li>Érintett személy(ek):</li>
+        <li>Vizsgálati időszak:</li>
+        <li>Megállapítások:</li>
+        <li>Értékelés:</li>
+        <li>Ajánlott intézkedés:</li>
+        <li>Jóváhagyta: Director / Deputy Director</li>
+        <li>Dátum:</li>
+      </ul>
+
+      <h2 id="titoktartas">X. Titoktartási és magatartási szabályok</h2>
+      <p>Az IOB állományának tagjai kötelesek:</p>
+      <ul>
+        <li>a vizsgálatokkal kapcsolatos információkat bizalmasan kezelni</li>
+        <li>pártatlanul és elfogulatlanul eljárni</li>
+        <li>szolgálati visszaélést haladéktalanul jelenteni</li>
+        <li>elkerülni minden összeférhetetlenséget</li>
+      </ul>
+      <p>A titoktartás megszegése önálló fegyelmi eljárást von maga után.</p>
+
+</div>
+  </div>
+</section>
+
+<section id="page-allomanytabla" class="page" aria-label="Alosztály állománytábla">
+  <div class="main">
+
+    <div class="sidebar">
+      <h3>Gyors műveletek</h3>
+      <a href="#tabla">Állománytábla</a>
+    </div>
+
+    <div class="content">
+      <h1>Alosztály állománytábla</h1>
+
+      <h2 id="tabla">Állománytábla</h2>
+      <table style="width:100%; border-collapse:collapse; font-family:Arial, sans-serif;">
+        <thead>
+          <tr>
+            <th style="text-align:left; border-bottom:1px solid var(--doj-border); padding:10px;">Név</th>
+            <th style="text-align:left; border-bottom:1px solid var(--doj-border); padding:10px;">Beosztás</th>
+            <th style="text-align:left; border-bottom:1px solid var(--doj-border); padding:10px;">Osztály</th>
+            <th style="text-align:left; border-bottom:1px solid var(--doj-border); padding:10px;">Státusz</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="border-bottom:1px solid var(--doj-border); padding:10px;">Justin D. Scully</td>
+            <td style="border-bottom:1px solid var(--doj-border); padding:10px;">Director of Internal Oversight</td>
+            <td style="border-bottom:1px solid var(--doj-border); padding:10px;">IOB</td>
+            <td style="border-bottom:1px solid var(--doj-border); padding:10px;">Aktív</td>
+          </tr>
+          <tr>
+            <td style="border-bottom:1px solid var(--doj-border); padding:10px;">Jacob D. Scully</td>
+            <td style="border-bottom:1px solid var(--doj-border); padding:10px;">Director of Internal Oversight</td>
+            <td style="border-bottom:1px solid var(--doj-border); padding:10px;">IOB</td>
+            <td style="border-bottom:1px solid var(--doj-border); padding:10px;">Aktív</td>
+          </tr>
+          <tr>
+            <td style="border-bottom:1px solid var(--doj-border); padding:10px;">Bailey Rae Brady</td>
+            <td style="border-bottom:1px solid var(--doj-border); padding:10px;">Deputy Director</td>
+            <td style="border-bottom:1px solid var(--doj-border); padding:10px;">IOB</td>
+            <td style="border-bottom:1px solid var(--doj-border); padding:10px;">Aktív</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="footer">
+  <div style="max-width:1300px;margin:auto;display:flex;gap:40px;flex-wrap:wrap;align-items:flex-start;">
+    <div style="min-width:260px;flex:1;">
+      <div style="font-weight:700;letter-spacing:.5px;margin-bottom:8px;">Contact</div>
+      <div>Email: <a href="mailto:info@iobureau.gov" style="color:#ffffff;text-decoration:underline;">info@iobureau.gov</a></div>
+      <div>Phone: +1 (202) 555-0123</div>
+    </div>
+    <div style="min-width:260px;flex:1;">
+      <div style="font-weight:700;letter-spacing:.5px;margin-bottom:8px;">Headquarters</div>
+      <div>San Andreas Avenue, South Rockford Drive and Vespucci Boulevard, Vespucci, Los Santos</div>
+    </div>
+    <div style="min-width:200px;display:flex;align-items:flex-start;gap:10px;">
+      <span class="govbar-flag" aria-hidden="true" title="United States"></span>
+      <div style="opacity:.9;">An official resource of the Internal Oversight Bureau.</div>
+    </div>
+  </div>
+  <div style="max-width:1300px;margin:18px auto 0;border-top:1px solid rgba(255,255,255,.18);padding-top:14px;opacity:.9;">
+    © 2026 Internal Oversight Bureau | All Rights Reserved
+  </div>
+</div>
+
+<script>
+(function(){
+  function updateChromeHeights(){
+    const gov = document.querySelector(".govbar");
+    const header = document.querySelector(".header");
+    const nav = document.querySelector(".topnav");
+    if(!gov || !header || !nav) return;
+
+    const govH = gov.offsetHeight || 0;
+    const headerH = header.offsetHeight || 0;
+    const navH = nav.offsetHeight || 0;
+    const total = govH + headerH + navH;
+
+    document.documentElement.style.setProperty("--govbar-h", govH + "px");
+    document.documentElement.style.setProperty("--header-h", headerH + "px");
+    document.documentElement.style.setProperty("--topnav-h", navH + "px");
+    document.documentElement.style.setProperty("--chrome-h", total + "px");
+  }
+
+  const buttons = Array.from(document.querySelectorAll(".navbtn"));
+  const pages = {
+    home: document.getElementById("page-home"),
+    ismerteto: document.getElementById("page-ismerteto"),
+    allomanytabla: document.getElementById("page-allomanytabla"),
+  };
+
+  function setActive(target){
+    // toggle pages
+    Object.keys(pages).forEach(k => pages[k].classList.toggle("active", k === target));
+    // toggle buttons
+    buttons.forEach(b => b.classList.toggle("active", b.dataset.target === target));
+    // reset scroll for usability
+    window.scrollTo({ top: 0, behavior: "auto" });
+
+    if(target === "ismerteto"){
+      bindIsmertetoAnchors();
+      initScrollAnimFor(document.getElementById("infoContent"));
+    }
+
+    if(target === "home"){
+      bindHomeAnchors();
+      initScrollAnimFor(document.querySelector("#page-home .content"));
+    }
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => setActive(btn.dataset.target));
+  });
+
+  // --- SCROLL ANIM (HOME + ISMERTETŐ) ---
+  const revealInitialized = new WeakSet();
+
+  function initScrollAnimFor(container){
+    if(!container || revealInitialized.has(container)) return;
+
+    const targets = Array.from(container.querySelectorAll(
+      "h1, h2, h3, p, ul, table, img, .notice, .meta, .home-hero"
+    ));
+
+    targets.forEach(el => {
+      if(!el.classList.contains("scroll-anim")) el.classList.add("scroll-anim");
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add("in");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { root: null, threshold: 0.12 });
+
+    targets.forEach(el => observer.observe(el));
+    revealInitialized.add(container);
+  }
+
+  // Smooth scroll for ismertető sidebar anchors
+  function bindIsmertetoAnchors(){
+    const links = Array.from(document.querySelectorAll("#page-ismerteto .sidebar a[href^='#']"));
+    links.forEach(a => {
+      a.addEventListener("click", (e) => {
+        const href = a.getAttribute("href");
+        const target = href ? document.querySelector(href) : null;
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
+  }
+
+  // Főoldal sidebar anchors (smooth scroll)
+  function bindHomeAnchors(){
+    const links = Array.from(document.querySelectorAll("#page-home .sidebar a[href^='#']"));
+    links.forEach(a => {
+      a.addEventListener("click", (e) => {
+        const href = a.getAttribute("href");
+        const target = href ? document.querySelector(href) : null;
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
+  }
+
+  // --- ISMERTETŐ SEARCH (CTRL+F STYLE) ---
+  const searchInput = document.getElementById("infoSearch");
+  const prevBtn = document.getElementById("findPrev");
+  const nextBtn = document.getElementById("findNext");
+  const countEl = document.getElementById("findCount");
+  const infoContent = document.getElementById("infoContent");
+
+  let originalHTML = null;
+  let matches = [];
+  let current = -1;
+
+  function updateCount(){
+    if(!countEl) return;
+    if(!matches.length) countEl.textContent = "0/0";
+    else countEl.textContent = `${current + 1}/${matches.length}`;
+  }
+
+  function resetContent(){
+    if(infoContent && originalHTML !== null){
+      infoContent.innerHTML = originalHTML;
+    }
+    matches = [];
+    current = -1;
+    updateCount();
+  }
+
+  function focusCurrent(scroll){
+    matches.forEach(m => m.classList.remove("current"));
+    if(current < 0 || current >= matches.length){
+      updateCount();
+      return;
+    }
+    const m = matches[current];
+    m.classList.add("current");
+    updateCount();
+    if(scroll) m.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  function buildHighlights(query){
+    if(!infoContent) return;
+    if(originalHTML === null) originalHTML = infoContent.innerHTML;
+
+    // clear + restore original each time (so we don't nest marks)
+    infoContent.innerHTML = originalHTML;
+    matches = [];
+    current = -1;
+
+    const q = (query || "").trim();
+    if(!q){
+      updateCount();
+      return;
+    }
+    const qLower = q.toLowerCase();
+
+    const walker = document.createTreeWalker(infoContent, NodeFilter.SHOW_TEXT, {
+      acceptNode(node){
+        if(!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        const p = node.parentElement;
+        if(!p) return NodeFilter.FILTER_ACCEPT;
+        const tag = p.tagName;
+        if(tag === "SCRIPT" || tag === "STYLE" || tag === "NOSCRIPT") return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+
+    let node;
+    while((node = walker.nextNode())){
+      const text = node.nodeValue;
+      const lower = text.toLowerCase();
+
+      let start = 0;
+      let idx = lower.indexOf(qLower, start);
+      if(idx === -1) continue;
+
+      const frag = document.createDocumentFragment();
+      while(idx !== -1){
+        if(idx > start){
+          frag.appendChild(document.createTextNode(text.slice(start, idx)));
+        }
+        const mark = document.createElement("mark");
+        mark.textContent = text.slice(idx, idx + q.length);
+        frag.appendChild(mark);
+        matches.push(mark);
+
+        start = idx + q.length;
+        idx = lower.indexOf(qLower, start);
+      }
+      if(start < text.length){
+        frag.appendChild(document.createTextNode(text.slice(start)));
+      }
+      node.parentNode.replaceChild(frag, node);
+    }
+
+    if(matches.length){
+      current = 0;
+      focusCurrent(true);
+    }else{
+      updateCount();
+    }
+  }
+
+  function nextMatch(){
+    if(!matches.length) return;
+    current = (current + 1) % matches.length;
+    focusCurrent(true);
+  }
+
+  function prevMatch(){
+    if(!matches.length) return;
+    current = (current - 1 + matches.length) % matches.length;
+    focusCurrent(true);
+  }
+
+  function isIsmertetoActive(){
+    const page = document.getElementById("page-ismerteto");
+    return page && page.classList.contains("active");
+  }
+
+  if(searchInput && infoContent){
+    // live highlight like Ctrl+F
+    searchInput.addEventListener("input", () => buildHighlights(searchInput.value));
+
+    searchInput.addEventListener("keydown", (e) => {
+      if(e.key === "Enter"){
+        e.preventDefault();
+        if(e.shiftKey) prevMatch();
+        else nextMatch();
+      }
+      if(e.key === "Escape"){
+        e.preventDefault();
+        searchInput.value = "";
+        resetContent();
+      }
+    });
+  }
+
+  if(prevBtn) prevBtn.addEventListener("click", prevMatch);
+  if(nextBtn) nextBtn.addEventListener("click", nextMatch);
+
+  // Ctrl+F focuses our finder when Ismertető is open
+  document.addEventListener("keydown", (e) => {
+    if((e.ctrlKey || e.metaKey) && (e.key === "f" || e.key === "F")){
+      if(isIsmertetoActive() && searchInput){
+        e.preventDefault();
+        searchInput.focus();
+        searchInput.select();
+      }
+    }
+    // F3 / Shift+F3 navigation (optional)
+    if(e.key === "F3"){
+      if(isIsmertetoActive()){
+        e.preventDefault();
+        if(e.shiftKey) prevMatch();
+        else nextMatch();
+      }
+    }
+  });
+
+  // Initial reveal + smooth anchors on Főoldal
+  bindHomeAnchors();
+  initScrollAnimFor(document.querySelector("#page-home .content"));
+
+  // Sticky chrome sizing
+  updateChromeHeights();
+  window.addEventListener("resize", updateChromeHeights);
+  // Recompute after fonts/images settle
+  window.addEventListener("load", updateChromeHeights);
+
+})();
+</script>
+
+</body>
+</html>
