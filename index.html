@@ -1570,6 +1570,210 @@ mark.current{outline:2px solid var(--doj-accent);}
   .simple-hero__title{ font-size: 34px; }
 }
 
+
+/* === ÜGYEK: egységesebb, „állománytábla” stílus === */
+#page-ugyek .cases-hero{
+  border:1px solid rgba(0,0,0,.10);
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(0,94,162,.08), rgba(255,255,255,1) 55%);
+  box-shadow: 0 10px 28px rgba(0,0,0,.06);
+  overflow:hidden;
+  position: relative;
+  padding: 18px 18px 16px 24px;
+}
+#page-ugyek .cases-hero::before{
+  content:"";
+  position:absolute;
+  left:0; top:0; bottom:0;
+  width: 6px;
+  background: var(--doj-accent);
+}
+#page-ugyek .cases-hero-title{
+  font-family: Arial, sans-serif;
+  font-weight: 900;
+  letter-spacing: .02em;
+  font-size: 18px;
+  color: var(--doj-dark);
+}
+#page-ugyek .cases-hero-sub{
+  margin-top: 6px;
+  color: rgba(0,0,0,.72);
+  font-size: 14px;
+  max-width: 80ch;
+}
+#page-ugyek .cases-toolbar{
+  margin-top: 14px;
+  border:1px solid rgba(0,0,0,.10);
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: rgba(255,255,255,.90);
+  display:flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: end;
+}
+#page-ugyek .cases-toolbar input[type="search"],
+#page-ugyek .cases-toolbar select{
+  width: 100%;
+  border:1px solid rgba(0,0,0,.14);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 14px;
+  background:#fff;
+}
+#page-ugyek .toolbar-left{ flex: 1; min-width: 280px; }
+#page-ugyek .toolbar-right{ width: 280px; }
+#page-ugyek .toolbar-label{
+  display:block;
+  font-family: Arial, sans-serif;
+  font-weight: 900;
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,.55);
+  margin-bottom: 6px;
+}
+#page-ugyek .cases-panel{
+  border:1px solid rgba(0,0,0,.10);
+  border-radius: 16px;
+  margin-top: 14px;
+  overflow:hidden;
+  background:#fff;
+  box-shadow: 0 10px 28px rgba(0,0,0,.05);
+}
+#page-ugyek .panel-head{
+  display:flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 16px;
+  background: rgba(16,42,67,.04);
+  border-bottom: 1px solid rgba(0,0,0,.10);
+}
+#page-ugyek .panel-title{
+  font-family: Arial, sans-serif;
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--doj-dark);
+}
+#page-ugyek .cases-table{
+  width:100%;
+  border-collapse: collapse;
+}
+#page-ugyek .cases-table thead th{
+  background: rgba(0,0,0,.03);
+  border-bottom: 1px solid rgba(0,0,0,.10);
+  padding: 12px 14px;
+  font-family: Arial, sans-serif;
+  font-weight: 900;
+  text-transform: none;
+}
+#page-ugyek .cases-table tbody td{
+  padding: 14px;
+  border-bottom: 1px solid rgba(0,0,0,.08);
+  vertical-align: top;
+}
+#page-ugyek .cases-table tbody tr:hover{
+  background: rgba(0,94,162,.05);
+}
+#page-ugyek .cases-table-wrap{
+  overflow: visible; /* ne dobjon extra scrollbart */
+}
+@media (max-width: 980px){
+  #page-ugyek .cases-toolbar{ flex-direction: column; align-items: stretch; }
+  #page-ugyek .toolbar-right{ width: 100%; }
+}
+
+
+/* === ÜGYEK: H1 finomhangolás === */
+#page-ugyek h1{
+  margin: 6px 0 10px 0;
+  font-size: 54px;
+  line-height: 1.02;
+  position: relative;
+}
+#page-ugyek h1::after{
+  content:"";
+  display:block;
+  width: 64px;
+  height: 6px;
+  margin-top: 12px;
+  background: linear-gradient(90deg, rgba(0,94,162,.85), rgba(0,94,162,.25));
+  border-radius: 999px;
+  box-shadow: 0 6px 16px rgba(0,0,0,.06);
+}
+#page-ugyek .breadcrumbs{
+  margin-top: 2px;
+  color: rgba(0,0,0,.60);
+}
+
+
+/* === ÜGYEK: táblázat egy sorban, no wrap === */
+#page-ugyek .cases-table th,
+#page-ugyek .cases-table td{
+  white-space: nowrap;
+}
+#page-ugyek .cases-table td:nth-child(2){
+  white-space: normal; /* cím lehet 2 sor, de ne törje szét a layoutot túlzottan */
+  min-width: 320px;
+}
+#page-ugyek .cases-table td:first-child a,
+#page-ugyek .cases-table td:first-child{
+  white-space: nowrap !important;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+#page-ugyek .cases-table td:first-child a{
+  display:inline-block;
+}
+#page-ugyek .cases-table td:nth-child(3){
+  width: 120px;
+}
+#page-ugyek .cases-table td:nth-child(4){
+  width: 210px;
+}
+#page-ugyek .cases-table td:nth-child(5){
+  width: 140px;
+}
+
+
+@media (max-width: 980px){
+  #page-ugyek .cases-table-wrap{ overflow-x: auto; }
+  #page-ugyek .cases-table{ min-width: 820px; }
+}
+
+
+/* ÜGYEK: hero leírás 1 sorban */
+#page-ugyek .cases-hero-sub{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media (max-width: 980px){
+  #page-ugyek .cases-hero-sub{ white-space: normal; }
+}
+
+
+/* ÜGYEK: leírás teljes szöveg (nincs ...) */
+#page-ugyek .cases-hero-sub{
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
+
+
+/* ÜGYEK: cases-hero kinézet közel a főoldalhoz */
+#page-ugyek .cases-hero{
+  padding: 18px 18px 14px 22px;
+}
+#page-ugyek .cases-hero-title{
+  font-size: 16px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
 </style>
 </head>
 <body>
@@ -1607,9 +1811,8 @@ mark.current{outline:2px solid var(--doj-accent);}
 <a href="#info-kapcsolat">5. Kapcsolat</a>
 </div>
 <div class="content">
-<h1>Főoldal</h1>
 <div aria-label="Oldal információ" class="meta">
-<span><a href="#" onclick="return false;">Internal Oversight Bureau</a> <span class="sep">›</span> <span>Főoldal</span></span>
+<span><a href="#" class="meta-home" data-goto="home">Internal Oversight Bureau</a> <span class="sep">›</span> <span>Főoldal</span></span>
 <span class="sep">|</span>
 <span>Last Updated: February 11, 2026</span>
 </div>
@@ -1674,9 +1877,8 @@ mark.current{outline:2px solid var(--doj-accent);}
 <a href="#nyilvanossag">X. Nyilvánosság</a>
 </div>
 <div class="content" id="infoContent">
-<h1>Ismertető</h1>
 <div aria-label="Oldal információ" class="meta">
-<span><a href="#" onclick="return false;">Internal Oversight Bureau</a> <span class="sep">›</span> <span>Ismertető</span></span>
+<span><a href="#" class="meta-home" data-goto="home">Internal Oversight Bureau</a> <span class="sep">›</span> <span>Ismertető</span></span>
 <span class="sep">|</span>
 <span>Last Updated: February 11, 2026</span>
 </div>
@@ -1969,33 +2171,9 @@ mark.current{outline:2px solid var(--doj-accent);}
 </section>
 <section aria-label="Ügyek" class="page" id="page-ugyek">
   <div class="main">
-    <div class="sidebar">
-      <h3>Keresés</h3>
-
-      <div class="searchbox">
-        <input id="caseSearch" placeholder="Keresés (ügyszám / cím / kulcsszó)..." type="search"/>
-        <div class="helptext">Tipp: pl. „jog”, „IOB-2025-097”, „bizonyíték”.</div>
-      </div>
-
-      <h3>Rendezés</h3>
-      <select id="caseSort">
-        <option value="closed_desc">Lezárás dátuma (↓)</option>
-        <option value="closed_asc">Lezárás dátuma (↑)</option>
-        <option value="id_asc">Ügyszám (A→Z)</option>
-        <option value="title_asc">Cím (A→Z)</option>
-      </select>
-
-      <div class="side-sep"></div>
-
-      <div class="helptext">
-        Itt kizárólag <strong>lezárt</strong> ügyek kivonatai jelennek meg (summary / anonimizált tartalom).
-      </div>
-</div>
-
     <div class="content">
-      <h1>Ügyek</h1>
-      <div aria-label="Oldal információ" class="meta">
-        <span><a href="#" onclick="return false;">Internal Oversight Bureau</a> <span class="sep">›</span> <span>Ügyek</span></span>
+<div aria-label="Oldal információ" class="meta">
+        <span><a href="#" class="meta-home" data-goto="home">Internal Oversight Bureau</a> <span class="sep">›</span> <span>Ügyek</span></span>
         <span class="sep">|</span>
         <span>Last Updated: February 25, 2026</span>
       </div>
@@ -2004,7 +2182,7 @@ mark.current{outline:2px solid var(--doj-accent);}
         <div>
           <div class="cases-hero-title">Case Dashboard / Ügykezelő</div>
           <div class="cases-hero-sub">
-            Ügyek nyomon követése státusz, prioritás, felelős és aktivitás alapján. Kattints egy ügyre a részletes dossziéhoz.
+            Ügyek nyomon követése státusz, prioritás, felelős és aktivitás alapján. Kattints egy ügyre a részletes&nbsp;dossziéhoz.
           </div>
         </div>
         <div class="cases-hero-badges">
@@ -2056,35 +2234,6 @@ mark.current{outline:2px solid var(--doj-accent);}
     </table>
   </div>
 </div>
-            <div class="panel-sub" id="caseCount">—</div>
-          </div>
-
-          <div class="cases-table-wrap">
-            <table class="cases-table" aria-label="Ügylista táblázat">
-              <thead>
-                <tr>
-                  <th>Ügyszám</th>
-                  <th>Cím</th>
-                  <th>Lezárás</th>
-                  <th>Megállapítás</th>
-                  <th>Kivonat</th>
-</tr>
-              </thead>
-              <tbody id="caseTableBody"></tbody>
-            </table>
-          </div>
-        </div>
-
-        
-            </div>
-            
-          </div>
-
-          
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -2250,6 +2399,16 @@ mark.current{outline:2px solid var(--doj-accent);}
     targets.forEach(el => observer.observe(el));
     revealInitialized.add(container);
   }
+
+  // Breadcrumb: always go back to Home
+  document.addEventListener("click", function(e){
+    const a = e.target.closest('a.meta-home, a[data-goto="home"]');
+    if(!a) return;
+    e.preventDefault();
+    setActive("home");
+  });
+
+
 
   // Smooth scroll for ismertető sidebar anchors
   function bindIsmertetoAnchors(){
@@ -2867,7 +3026,18 @@ function detailHTML(c){
   document.addEventListener('click', (e)=>{
     const withinRoster = e.target.closest('.roster-table');
     if(!withinRoster) closeAll();
+  
+  /* === META BREADCRUMB NAV === */
+  document.addEventListener("click", function(e){
+    const a = e.target.closest("a[data-goto]");
+    if(!a) return;
+    e.preventDefault();
+    const target = a.getAttribute("data-goto");
+    if(typeof setActive === "function"){
+      setActive(target);
+    }
   });
+});
 })();
 
   // Home stats (publikus lezárt ügyek)
