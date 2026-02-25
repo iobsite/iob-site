@@ -1774,6 +1774,83 @@ mark.current{outline:2px solid var(--doj-accent);}
   text-transform: uppercase;
 }
 
+
+/* =============================== */
+/*  ROSTER REFINEMENTS (SMALL)     */
+/*  Rank badge • Clearance • Motto */
+/* =============================== */
+
+.rank-badge{
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.4px;
+  border:1px solid rgba(0,0,0,.12);
+  background:rgba(16,42,67,.06);
+  white-space:nowrap;
+  vertical-align:middle;
+}
+
+.rank-director{
+  background:rgba(11,46,79,.10);
+  border-color:rgba(11,46,79,.25);
+  color:#0b2e4f;
+}
+
+.rank-deputy{
+  background:rgba(0,94,162,.10);
+  border-color:rgba(0,94,162,.25);
+  color:#005ea2;
+}
+
+.rank-wrap{
+  display:inline-flex;
+  gap:10px;
+  align-items:center;
+}
+
+/* Clearance badge */
+.clearance-badge{
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.5px;
+  background:#102a43;
+  color:#ffffff;
+  white-space:nowrap;
+}
+
+/* Bio highlight (all profiles) */
+.profile-bio{
+  margin-top:14px !important;
+  padding:14px 16px !important;
+  border-left:4px solid rgba(0,94,162,.55) !important;
+  background:rgba(0,94,162,.05) !important;
+  color:#102a43 !important;
+  font-size:14px !important;
+  line-height:1.6 !important;
+  border-top:none !important;
+}
+
+/* Motto highlight (inside bio) */
+.profile-motto{
+  font-style:italic;
+  font-size:15px;
+}
+
+/* Fix: if motto sits inside highlighted bio, avoid double bars */
+.profile-bio .profile-motto{
+  margin: 0 !important;
+  padding: 0 !important;
+  border-left: none !important;
+  background: transparent !important;
+  color: inherit !important;
+}
+
 </style>
 </head>
 <body>
@@ -2268,22 +2345,22 @@ mark.current{outline:2px solid var(--doj-accent);}
 <tbody><tr>
 <td><img alt="Justin D. Scully profilkép" class="roster-avatar" src="justin.png"/></td>
 <td class="roster-name"><button class="roster-name-btn" data-person="justin" type="button">Justin D. Scully</button></td>
-<td class="roster-role">Director of Internal Oversight</td>
+<td class="roster-role"><span class="rank-wrap"><span class="rank-badge rank-director">Director</span><span>Director of Internal Oversight</span></span></td>
 <td><span class="dept-iob">IOB</span></td>
 <td><span class="status-active">Active</span></td>
-</tr><tr class="roster-detail" data-person-detail="justin" hidden=""><td colspan="5"><div aria-label="Justin D. Scully profil" class="profile-card" role="region"><div class="profile-top"><img alt="Justin D. Scully portré" class="profile-avatar" src="justin.png"/><div class="profile-meta"><div class="profile-name">Justin D. Scully</div><div class="profile-role">Director of Internal Oversight</div><div class="profile-chips"><span class="chip chip-dept">IOB</span><span class="chip chip-status">Active</span></div></div></div><div class="profile-grid"><div class="profile-field"><div class="profile-label">Rank/Position</div><div class="profile-value">Director of Internal Oversight</div></div><div class="profile-field"><div class="profile-label">Department</div><div class="profile-value">IOB</div></div><div class="profile-field"><div class="profile-label">Status</div><div class="profile-value">Active</div></div><div class="profile-field"><div class="profile-label">Station</div><div class="profile-value">Vespucci Boulevard PD</div></div><div class="profile-field"><div class="profile-label">Phone Number</div><div class="profile-value">—</div></div><div class="profile-field"><div class="profile-label">Date of Birth</div><div class="profile-value">2000-12-29</div></div><div class="profile-field"><div class="profile-label">Nationality</div><div class="profile-value">American</div></div><div class="profile-field"><div class="profile-label">Gender</div><div class="profile-value">Male</div></div><div class="profile-field"><div class="profile-label">Hobby</div><div class="profile-value">Fishing, Soccer, Basketball</div></div></div><div class="profile-bio">A Bureau működésének stratégiai irányítása, vizsgálatok engedélyezése és lezárása, jelentések jóváhagyása.</div></div></td></tr><tr>
+</tr><tr class="roster-detail" data-person-detail="justin" hidden=""><td colspan="5"><div aria-label="Justin D. Scully profil" class="profile-card" role="region"><div class="profile-top"><img alt="Justin D. Scully portré" class="profile-avatar" src="justin.png"/><div class="profile-meta"><div class="profile-name">Justin D. Scully</div><div class="profile-role">Director of Internal Oversight</div><div class="profile-chips"><span class="chip chip-dept">IOB</span><span class="chip chip-status">Active</span></div></div></div><div class="profile-grid"><div class="profile-field"><div class="profile-label">Rank/Position</div><div class="profile-value">Director of Internal Oversight</div></div><div class="profile-field"><div class="profile-label">Department</div><div class="profile-value">IOB</div></div><div class="profile-field"><div class="profile-label">Clearance Level</div><div class="profile-value"><span class="clearance-badge">EXECUTIVE</span></div></div><div class="profile-field"><div class="profile-label">Status</div><div class="profile-value">Active</div></div><div class="profile-field"><div class="profile-label">Station</div><div class="profile-value">Vespucci Boulevard PD</div></div><div class="profile-field"><div class="profile-label">Phone Number</div><div class="profile-value">—</div></div><div class="profile-field"><div class="profile-label">Date of Birth</div><div class="profile-value">2000-12-29</div></div><div class="profile-field"><div class="profile-label">Nationality</div><div class="profile-value">American</div></div><div class="profile-field"><div class="profile-label">Gender</div><div class="profile-value">Male</div></div><div class="profile-field"><div class="profile-label">Hobby</div><div class="profile-value">Fishing, Soccer, Basketball</div></div></div><div class="profile-bio">A Bureau működésének stratégiai irányítása, vizsgálatok engedélyezése és lezárása, jelentések jóváhagyása.</div></div></td></tr><tr>
 <td><img alt="Jacob D. Scully profilkép" class="roster-avatar" src="jacob.png"/></td>
 <td class="roster-name"><button class="roster-name-btn" data-person="jacob" type="button">Jacob D. Scully</button></td>
-<td class="roster-role">Director of Internal Oversight</td>
+<td class="roster-role"><span class="rank-wrap"><span class="rank-badge rank-director">Director</span><span>Director of Internal Oversight</span></span></td>
 <td><span class="dept-iob">IOB</span></td>
 <td><span class="status-active">Active</span></td>
-</tr><tr class="roster-detail" data-person-detail="jacob" hidden=""><td colspan="5"><div aria-label="Jacob D. Scully profil" class="profile-card" role="region"><div class="profile-top"><img alt="Jacob D. Scully portré" class="profile-avatar" src="jacob.png"/><div class="profile-meta"><div class="profile-name">Jacob D. Scully</div><div class="profile-role">Director of Internal Oversight</div><div class="profile-chips"><span class="chip chip-dept">IOB</span><span class="chip chip-status">Active</span></div></div></div><div class="profile-grid"><div class="profile-field"><div class="profile-label">Rank/Position</div><div class="profile-value">Director of Internal Oversight</div></div><div class="profile-field"><div class="profile-label">Department</div><div class="profile-value">IOB</div></div><div class="profile-field"><div class="profile-label">Status</div><div class="profile-value">Active</div></div><div class="profile-field"><div class="profile-label">Station</div><div class="profile-value">Vespucci Boulevard PD</div></div><div class="profile-field"><div class="profile-label">Phone Number</div><div class="profile-value">—</div></div><div class="profile-field"><div class="profile-label">Date of Birth</div><div class="profile-value">2000-12-29</div></div><div class="profile-field"><div class="profile-label">Nationality</div><div class="profile-value">American</div></div><div class="profile-field"><div class="profile-label">Gender</div><div class="profile-value">Male</div></div><div class="profile-field"><div class="profile-label">Hobby</div><div class="profile-value">Weightlifting, Cooking, Philosophy</div></div></div><div class="profile-bio">„Az éj sötétje nem rejti el a bűnt, csak mélyíti.”</div></div></td></tr><tr>
+</tr><tr class="roster-detail" data-person-detail="jacob" hidden=""><td colspan="5"><div aria-label="Jacob D. Scully profil" class="profile-card" role="region"><div class="profile-top"><img alt="Jacob D. Scully portré" class="profile-avatar" src="jacob.png"/><div class="profile-meta"><div class="profile-name">Jacob D. Scully</div><div class="profile-role">Director of Internal Oversight</div><div class="profile-chips"><span class="chip chip-dept">IOB</span><span class="chip chip-status">Active</span></div></div></div><div class="profile-grid"><div class="profile-field"><div class="profile-label">Rank/Position</div><div class="profile-value">Director of Internal Oversight</div></div><div class="profile-field"><div class="profile-label">Department</div><div class="profile-value">IOB</div></div><div class="profile-field"><div class="profile-label">Clearance Level</div><div class="profile-value"><span class="clearance-badge">EXECUTIVE</span></div></div><div class="profile-field"><div class="profile-label">Status</div><div class="profile-value">Active</div></div><div class="profile-field"><div class="profile-label">Station</div><div class="profile-value">Vespucci Boulevard PD</div></div><div class="profile-field"><div class="profile-label">Phone Number</div><div class="profile-value">—</div></div><div class="profile-field"><div class="profile-label">Date of Birth</div><div class="profile-value">2000-12-29</div></div><div class="profile-field"><div class="profile-label">Nationality</div><div class="profile-value">American</div></div><div class="profile-field"><div class="profile-label">Gender</div><div class="profile-value">Male</div></div><div class="profile-field"><div class="profile-label">Hobby</div><div class="profile-value">Weightlifting, Cooking, Philosophy</div></div></div><div class="profile-bio"><div class="profile-motto">„Az éj sötétje nem rejti el a bűnt, csak mélyíti.”</div></div></div></td></tr><tr>
 <td><img alt="Bailey Rae Brady profilkép" class="roster-avatar" src="rae.png"/></td>
 <td class="roster-name"><button class="roster-name-btn" data-person="rae" type="button">Bailey Rae Brady</button></td>
-<td class="roster-role">Deputy Director</td>
+<td class="roster-role"><span class="rank-wrap"><span class="rank-badge rank-deputy">Deputy</span><span>Deputy Director</span></span></td>
 <td><span class="dept-iob">IOB</span></td>
 <td><span class="status-active">Active</span></td>
-</tr><tr class="roster-detail" data-person-detail="rae" hidden=""><td colspan="5"><div aria-label="Bailey Rae Brady profil" class="profile-card" role="region"><div class="profile-top"><img alt="Bailey Rae Brady portré" class="profile-avatar" src="rae.png"/><div class="profile-meta"><div class="profile-name">Bailey Rae Brady</div><div class="profile-role">Deputy Director</div><div class="profile-chips"><span class="chip chip-dept">IOB</span><span class="chip chip-status">Active</span></div></div></div><div class="profile-grid"><div class="profile-field"><div class="profile-label">Rank/Position</div><div class="profile-value">Deputy Director</div></div><div class="profile-field"><div class="profile-label">Department</div><div class="profile-value">IOB</div></div><div class="profile-field"><div class="profile-label">Status</div><div class="profile-value">Active</div></div><div class="profile-field"><div class="profile-label">Station</div><div class="profile-value">Vespucci Boulevard PD</div></div><div class="profile-field"><div class="profile-label">Phone Number</div><div class="profile-value">—</div></div><div class="profile-field"><div class="profile-label">Date of Birth</div><div class="profile-value">1990-09-19</div></div><div class="profile-field"><div class="profile-label">Nationality</div><div class="profile-value">American</div></div><div class="profile-field"><div class="profile-label">Gender</div><div class="profile-value">Female</div></div><div class="profile-field"><div class="profile-label">Hobby</div><div class="profile-value">—</div></div></div><div class="profile-bio">Operatív irányítás, aktív ügyek koordinálása, investigatorok munkájának felügyelete.</div></div></td></tr></tbody>
+</tr><tr class="roster-detail" data-person-detail="rae" hidden=""><td colspan="5"><div aria-label="Bailey Rae Brady profil" class="profile-card" role="region"><div class="profile-top"><img alt="Bailey Rae Brady portré" class="profile-avatar" src="rae.png"/><div class="profile-meta"><div class="profile-name">Bailey Rae Brady</div><div class="profile-role">Deputy Director</div><div class="profile-chips"><span class="chip chip-dept">IOB</span><span class="chip chip-status">Active</span></div></div></div><div class="profile-grid"><div class="profile-field"><div class="profile-label">Rank/Position</div><div class="profile-value">Deputy Director</div></div><div class="profile-field"><div class="profile-label">Department</div><div class="profile-value">IOB</div></div><div class="profile-field"><div class="profile-label">Clearance Level</div><div class="profile-value"><span class="clearance-badge">DIRECTORIAL</span></div></div><div class="profile-field"><div class="profile-label">Status</div><div class="profile-value">Active</div></div><div class="profile-field"><div class="profile-label">Station</div><div class="profile-value">Vespucci Boulevard PD</div></div><div class="profile-field"><div class="profile-label">Phone Number</div><div class="profile-value">—</div></div><div class="profile-field"><div class="profile-label">Date of Birth</div><div class="profile-value">1990-09-19</div></div><div class="profile-field"><div class="profile-label">Nationality</div><div class="profile-value">American</div></div><div class="profile-field"><div class="profile-label">Gender</div><div class="profile-value">Female</div></div><div class="profile-field"><div class="profile-label">Hobby</div><div class="profile-value">—</div></div></div><div class="profile-bio">Operatív irányítás, aktív ügyek koordinálása, investigatorok munkájának felügyelete.</div></div></td></tr></tbody>
 </table>
 </div>
 </div>
