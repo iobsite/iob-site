@@ -868,112 +868,112 @@
   // Lezárt ügyek – példa adatok + részletek
   const cases = [
     {
-      id: "IOB-2026-009",
+      id: "IOB-2026-001",
       title: "Kommunikációs panasz – lezárt",
-      closedAt: "2026-02-22",
-      finding: "Részben megalapozott",
+      closedAt: "2026-03-02",
+      finding: "Megalapozott",
       publicSummary: true,
-      assigned: "Jacob D. Scully",
-      summary: "A kommunikációs panasz egy része megalapozott. Figyelmeztetés és coaching javasolt.",
-      subjects: ["Bejelentő (anonim)", "Érintett állomány"],
+      assigned: "Justin D. Scully",
+      summary: "A kommunikációs panasz megalapozott. Figyelmeztetés és coaching javasolt.",
+      subjects: ["Bejelentő (Clarence)", "Érintett állomány"],
       timeline: [
-        { date:"2026-02-14 20:40", title:"Ügyindítás", note:"Panasz rögzítve." },
-        { date:"2026-02-17 11:05", title:"Meghallgatás", note:"Kivonatolt meghallgatás lebonyolítva." },
-        { date:"2026-02-22 16:18", title:"Zárás", note:"Megállapítás: részben megalapozott." }
+        { date:"2026-03-01 20:40", title:"Ügyindítás", note:"Panasz rögzítve." },
+        { date:"2026-03-03 17:12", title:"Meghallgatás", note:"Kivonatolt meghallgatás lebonyolítva." },
+        { date:"2026-03-02 21:56", title:"Zárás", note:"Megállapítás: részben megalapozott." }
       ],
       evidence: [
         { type:"Summary", ref:"COMM-SUM-02", desc:"Anonimizált összefoglaló." }
       ],
       actions: [
-        { title:"Figyelmeztetés", desc:"Parancsnoki jelzés: coaching / kommunikációs tréning." }
+        { title:"Figyelmeztetés", desc:"Etikai kódex átolvasása, bocsánat kérés személyesen." }
       ]
     },
-    {
-      id: "IOB-2026-006",
-      title: "Bizonyítékkezelés – adminisztratív eltérés",
-      closedAt: "2026-02-18",
-      finding: "Nem megalapozott",
-      publicSummary: true,
-      assigned: "Bailey Rae Brady",
-      summary: "Az eltérés adminisztratív jellegű volt, nem érintette a bizonyíték integritását. Intézkedés nem szükséges.",
-      subjects: ["Evidence Locker", "Ügyeletes állomány"],
-      timeline: [
-        { date:"2026-02-06 08:12", title:"Ügyindítás", note:"Rendszeres audit eltérést jelzett." },
-        { date:"2026-02-10 14:55", title:"Ellenőrzés", note:"Chain-of-custody formok összevetése." },
-        { date:"2026-02-18 09:10", title:"Zárás", note:"Megállapítás: nem megalapozott." }
-      ],
-      evidence: [
-        { type:"Audit Log", ref:"AUD-02/2026", desc:"Ellenőrzési kivonat, anonimizálva." }
-      ],
-      actions: [
-        { title:"Admin javítás", desc:"Űrlapkitöltési iránymutatás pontosítva." }
-      ]
-    },
-    {
-      id: "IOB-2026-002",
-      title: "Szolgálati szabályzat – eljárási hiba",
-      closedAt: "2026-02-03",
-      finding: "Megalapozott",
-      publicSummary: false,
-      assigned: "Justin D. Scully",
-      summary: "Eljárási hiba megállapítva. A részletes anyag belső (confidential), nyilvános kivonat nem kiadható.",
-      subjects: ["Érintett állomány (belső)"],
-      timeline: [
-        { date:"2026-01-20 08:55", title:"Ügyindítás", note:"Parancsnoki jelzés alapján." },
-        { date:"2026-01-25 12:10", title:"Dokumentumellenőrzés", note:"Szolgálati iratok összevetése." },
-        { date:"2026-02-03 18:05", title:"Zárás", note:"Megállapítás: megalapozott." }
-      ],
-      evidence: [
-        { type:"Internal Memo", ref:"INT-MEMO-2026/02", desc:"Belső értékelés (nem publikus)." }
-      ],
-      actions: [
-        { title:"Kötelező továbbképzés", desc:"Eljárásrend frissítő képzés kijelölt állománynak." }
-      ]
-    },
-    {
-      id: "IOB-2025-118",
-      title: "Panaszkezelés – lezárt",
-      closedAt: "2026-01-09",
-      finding: "Részben megalapozott",
-      publicSummary: true,
-      assigned: "Jacob D. Scully",
-      summary: "A panasz egyes elemei alátámasztást nyertek. Intézkedési javaslat rögzítve parancsnoki továbbításra.",
-      subjects: ["Érintett állomány", "Parancsnoki szint"],
-      timeline: [
-        { date:"2025-12-18 11:03", title:"Ügyindítás", note:"Panasz rögzítve." },
-        { date:"2026-01-04 09:40", title:"Meghallgatások", note:"Érintettek és tanúk kivonatolt meghallgatása." },
-        { date:"2026-01-09 17:20", title:"Zárás", note:"Megállapítás: részben megalapozott." }
-      ],
-      evidence: [
-        { type:"Public Summary", ref:"PUBLIC-SUMMARY", desc:"Anonimizált kivonat kiadható." },
-        { type:"CAD Extract", ref:"CAD-EX-1218", desc:"Dispatch események összefoglalója." }
-      ],
-      actions: [
-        { title:"Fegyelmi javaslat", desc:"Javasolt intézkedés rögzítve, parancsnoki döntés szükséges." }
-      ]
-    },
-    {
-      id: "IOB-2025-097",
-      title: "Etikai bejelentés – lezárt",
-      closedAt: "2025-11-02",
-      finding: "Nem megalapozott",
-      publicSummary: true,
-      assigned: "Bailey Rae Brady",
-      summary: "Vizsgálat lezárva: a bejelentésben foglaltak nem nyertek alátámasztást. Intézkedés nem szükséges.",
-      subjects: ["Bejelentő (anonim)"],
-      timeline: [
-        { date:"2025-10-03 09:00", title:"Ügyindítás", note:"Etikai bejelentés rögzítve." },
-        { date:"2025-10-11 13:20", title:"Előzetes értékelés", note:"Hatáskör és érintettség ellenőrizve." },
-        { date:"2025-11-02 15:30", title:"Zárás", note:"Megállapítás: nem megalapozott." }
-      ],
-      evidence: [
-        { type:"Interview Summary", ref:"INT-SUM-03", desc:"Meghallgatási kivonat (belső)." },
-        { type:"Report Extract", ref:"IR-EX-091", desc:"Szolgálati jelentés kivonat, anonimizálva." }
-      ],
-      actions: [
-        { title:"Archiválás", desc:"Ügy nyilvántartásban lezárt státusz rögzítve." }
-      ]
-    }
+    // {
+    //   id: "IOB-2026-006",
+    //   title: "Bizonyítékkezelés – adminisztratív eltérés",
+    //   closedAt: "2026-02-18",
+    //   finding: "Nem megalapozott",
+    //   publicSummary: true,
+    //   assigned: "Bailey Rae Brady",
+    //   summary: "Az eltérés adminisztratív jellegű volt, nem érintette a bizonyíték integritását. Intézkedés nem szükséges.",
+    //   subjects: ["Evidence Locker", "Ügyeletes állomány"],
+    //   timeline: [
+    //     { date:"2026-02-06 08:12", title:"Ügyindítás", note:"Rendszeres audit eltérést jelzett." },
+    //     { date:"2026-02-10 14:55", title:"Ellenőrzés", note:"Chain-of-custody formok összevetése." },
+    //     { date:"2026-02-18 09:10", title:"Zárás", note:"Megállapítás: nem megalapozott." }
+    //   ],
+    //   evidence: [
+    //     { type:"Audit Log", ref:"AUD-02/2026", desc:"Ellenőrzési kivonat, anonimizálva." }
+    //   ],
+    //   actions: [
+    //     { title:"Admin javítás", desc:"Űrlapkitöltési iránymutatás pontosítva." }
+    //   ]
+    // },
+    // {
+    //   id: "IOB-2026-002",
+    //   title: "Szolgálati szabályzat – eljárási hiba",
+    //   closedAt: "2026-02-03",
+    //   finding: "Megalapozott",
+    //   publicSummary: false,
+    //   assigned: "Justin D. Scully",
+    //   summary: "Eljárási hiba megállapítva. A részletes anyag belső (confidential), nyilvános kivonat nem kiadható.",
+    //   subjects: ["Érintett állomány (belső)"],
+    //   timeline: [
+    //     { date:"2026-01-20 08:55", title:"Ügyindítás", note:"Parancsnoki jelzés alapján." },
+    //     { date:"2026-01-25 12:10", title:"Dokumentumellenőrzés", note:"Szolgálati iratok összevetése." },
+    //     { date:"2026-02-03 18:05", title:"Zárás", note:"Megállapítás: megalapozott." }
+    //   ],
+    //   evidence: [
+    //     { type:"Internal Memo", ref:"INT-MEMO-2026/02", desc:"Belső értékelés (nem publikus)." }
+    //   ],
+    //   actions: [
+    //     { title:"Kötelező továbbképzés", desc:"Eljárásrend frissítő képzés kijelölt állománynak." }
+    //   ]
+    // },
+    // {
+    //   id: "IOB-2025-118",
+    //   title: "Panaszkezelés – lezárt",
+    //   closedAt: "2026-01-09",
+    //   finding: "Részben megalapozott",
+    //   publicSummary: true,
+    //   assigned: "Jacob D. Scully",
+    //   summary: "A panasz egyes elemei alátámasztást nyertek. Intézkedési javaslat rögzítve parancsnoki továbbításra.",
+    //   subjects: ["Érintett állomány", "Parancsnoki szint"],
+    //   timeline: [
+    //     { date:"2025-12-18 11:03", title:"Ügyindítás", note:"Panasz rögzítve." },
+    //     { date:"2026-01-04 09:40", title:"Meghallgatások", note:"Érintettek és tanúk kivonatolt meghallgatása." },
+    //     { date:"2026-01-09 17:20", title:"Zárás", note:"Megállapítás: részben megalapozott." }
+    //   ],
+    //   evidence: [
+    //     { type:"Public Summary", ref:"PUBLIC-SUMMARY", desc:"Anonimizált kivonat kiadható." },
+    //     { type:"CAD Extract", ref:"CAD-EX-1218", desc:"Dispatch események összefoglalója." }
+    //   ],
+    //   actions: [
+    //     { title:"Fegyelmi javaslat", desc:"Javasolt intézkedés rögzítve, parancsnoki döntés szükséges." }
+    //   ]
+    // },
+    // {
+    //   id: "IOB-2025-097",
+    //   title: "Etikai bejelentés – lezárt",
+    //   closedAt: "2025-11-02",
+    //   finding: "Nem megalapozott",
+    //   publicSummary: true,
+    //   assigned: "Bailey Rae Brady",
+    //   summary: "Vizsgálat lezárva: a bejelentésben foglaltak nem nyertek alátámasztást. Intézkedés nem szükséges.",
+    //   subjects: ["Bejelentő (anonim)"],
+    //   timeline: [
+    //     { date:"2025-10-03 09:00", title:"Ügyindítás", note:"Etikai bejelentés rögzítve." },
+    //     { date:"2025-10-11 13:20", title:"Előzetes értékelés", note:"Hatáskör és érintettség ellenőrizve." },
+    //     { date:"2025-11-02 15:30", title:"Zárás", note:"Megállapítás: nem megalapozott." }
+    //   ],
+    //   evidence: [
+    //     { type:"Interview Summary", ref:"INT-SUM-03", desc:"Meghallgatási kivonat (belső)." },
+    //     { type:"Report Extract", ref:"IR-EX-091", desc:"Szolgálati jelentés kivonat, anonimizálva." }
+    //   ],
+    //   actions: [
+    //     { title:"Archiválás", desc:"Ügy nyilvántartásban lezárt státusz rögzítve." }
+    //   ]
+    // }
   ];
   window.__IOB_CASES = cases;
 
